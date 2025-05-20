@@ -16,17 +16,14 @@ public class Four extends Actor
     //When moving four block gets summoned
     public void act()
     {
-    //if(greenfoot.isKeydown("left")
-    
-    //Forming 4 blocks
-    {
-        if(isTouching(Four.class)
+        //if(greenfoot.isKeydown("left")
+        
+        //Merging 4 blocks
+        if(isTouching(Four.class))
         {
             removeTouching(Four.class);
-            Greenfoot.world.removeObject(Four.class);
-            
-            
+            MyWorld world = (MyWorld) getWorld();
         }
-        
+            
     }
 }

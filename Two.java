@@ -7,7 +7,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class Two extends Actor
-{
+{    
     public Two()
     {
         setImage("images/twoBlock.png");
@@ -16,5 +16,11 @@ public class Two extends Actor
     public void act()
     {
         // setLocation(getX(), getY()+-1);  for up and down
+        
+        if(isTouching(Two.class))
+        {
+            removeTouching(Two.class);
+            MyWorld world = (MyWorld) getWorld();
+        }
     }
 }
