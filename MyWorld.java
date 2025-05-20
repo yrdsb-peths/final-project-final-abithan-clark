@@ -5,6 +5,14 @@ public class MyWorld extends World {
         super(500, 500, 1);
         
         backgroundSqr();
+        
+        Two two1 = new Two();
+        Two two2 = new Two();
+        
+        randPos();
+        
+        addObject(two1, 0, 0);
+        addObject(two2, 0, 0);
     }
     
     public void backgroundSqr()
@@ -26,5 +34,13 @@ public class MyWorld extends World {
             //lowers the next row
             posY += 120;
         }
+    }
+    
+    public void randPos()
+    {
+        int randX = Greenfoot.getRandomNumber(4);
+        int randY = Greenfoot.getRandomNumber(4);
+        
+        
     }
 }
