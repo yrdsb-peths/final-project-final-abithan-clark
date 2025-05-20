@@ -27,4 +27,11 @@ public class MyWorld extends World {
             posY += 120;
         }
     }
+    public void create8()
+    {
+        Eight eight = new Eight();
+        addObject();
+    }
+    
+    
 }
