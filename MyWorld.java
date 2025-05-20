@@ -4,6 +4,11 @@ public class MyWorld extends World {
     public MyWorld() {
         super(500, 500, 1);
         
+        backgroundSqr();
+    }
+    
+    public void backgroundSqr()
+    {
         //setting the first square y position
         int posY = 70;
         
