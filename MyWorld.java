@@ -43,4 +43,12 @@ public class MyWorld extends World {
         
         
     }
+
+    public void create8()
+    {
+        Eight eight = new Eight();
+        addObject();
+    }
+    
+    
 }

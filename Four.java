@@ -13,8 +13,20 @@ public class Four extends Actor
         setImage("images/fourBlock.png");
     }
     
+    //When moving four block gets summoned
     public void act()
     {
-        // Add your action code here.
+    //if(greenfoot.isKeydown("left")
+    
+    //Forming 4 blocks
+    {
+        if(isTouching(Four.class)
+        {
+            removeTouching(Four.class);
+            Greenfoot.world.removeObject(Four.class);
+            
+            
+        }
+        
     }
 }
