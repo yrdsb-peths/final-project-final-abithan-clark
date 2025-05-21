@@ -15,6 +15,16 @@ public class MyWorld extends World {
         
         //creates two 2 blocks at a random position
         randPos();
+        
+        if (Greenfoot.isKeyDown("up"))
+        {
+            
+        }
+        
+        if (Greenfoot.isKeyDown("down"))
+        {
+            
+        }
     }
     
     public void backgroundSqr()
@@ -60,7 +70,7 @@ public class MyWorld extends World {
             x2 = 70 + (randX2 * 120);
             y2 = 70 + (randY2 * 120);
         }
-
+        
         addObject(two1, x1, y1);
         addObject(two2, x2, y2);
     }    

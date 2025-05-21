@@ -35,6 +35,7 @@ public class Block extends Actor
     {
         int topValue = this.value;
         int bottomValue = block.value;
+        
         if(topValue != bottomValue) {
             return;
         }
@@ -45,6 +46,6 @@ public class Block extends Actor
         Block newBlock = new Block(topValue + bottomValue);
         getWorld().addObject(newBlock, x, y);
         
-        getWorld().removeObject(this);
+        getWorld().removeObject(this); //remove current instance 
     }
 }
