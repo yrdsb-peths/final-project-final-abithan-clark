@@ -3,6 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Block extends Actor
 {
     public int value;
+    public static boolean goUp = false;
+    public static boolean goDown = false;
     
     public Block(int value)
     {
@@ -28,7 +30,16 @@ public class Block extends Actor
     
     public void act()
     {
-        // Add your action code here.
+        //lets the block move down when this variable is set to true
+        if (goUp == true)
+        { 
+            moveUp();
+        }
+        
+        if (goDown == true)
+        {
+            moveDown();
+        }
     }
     
     public void merge(Block block)
@@ -47,5 +58,30 @@ public class Block extends Actor
         getWorld().addObject(newBlock, x, y);
         
         getWorld().removeObject(this); //remove current instance 
+    }
+    
+    public void moveUp()
+    {
+        //makes sure the block 
+        if (getY() > 70)
+        {
+            setLocation(getX(), getY() - 120);
+        }
+        else
+        {
+            return;
+        }
+    }
+    
+    public void moveDown()
+    {
+        if (getY() < 430)
+        {
+            setLocation(getX(), getY() + 120);
+        }
+        else
+        {
+            return;
+        }
     }
 }

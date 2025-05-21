@@ -15,15 +15,28 @@ public class MyWorld extends World {
         
         //creates two 2 blocks at a random position
         randPos();
-        
+
+    }
+    
+    //code is in act so it keeps checking for keypresses
+    public void act()
+    {
         if (Greenfoot.isKeyDown("up"))
         {
-            
+            Block.goUp = true;
+        }
+        else
+        {
+            Block.goUp = false;
         }
         
         if (Greenfoot.isKeyDown("down"))
         {
-            
+            Block.goDown = true;
+        }
+        else
+        {
+            Block.goDown = false;
         }
     }
     
@@ -73,5 +86,27 @@ public class MyWorld extends World {
         
         addObject(two1, x1, y1);
         addObject(two2, x2, y2);
-    }    
+    } 
+    
+    //for creating new blocks when any of the arrow keys are pressed
+    public void createNewBlocks()
+    {
+        int randX = Greenfoot.getRandomNumber(4);
+        int randY = Greenfoot.getRandomNumber(4);
+        int x = 70 + (randX * 120);
+        int y = 70 + (randY * 120);
+        
+        //randomizes whether to create a new 2 or 4(5% chance)
+        int twoOrFour = Greenfoot.getRandomNumber(6);
+        if (twoOrFour == 1)
+        {
+            Block four = new Block(4);
+            addObject(four, x, y);
+        }
+        else
+        {
+            Block two = new Block(2);
+            addObject(two, x, y);
+        }
+    }
 }
