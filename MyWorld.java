@@ -3,15 +3,15 @@
 import greenfoot.*;
 
 public class MyWorld extends World {
-    Two two1;
-    Two two2;
+    Block two1;
+    Block two2;
     public MyWorld() {
         super(500, 500, 1);
         
         backgroundSqr();
         
-        two1 = new Two();
-        two2 = new Two();
+        two1 = new Block(2);
+        two2 = new Block(2);
         
         //creates two 2 blocks at a random position
         randPos();
@@ -63,12 +63,5 @@ public class MyWorld extends World {
 
         addObject(two1, x1, y1);
         addObject(two2, x2, y2);
-    }
-
-    public void create8()
-    {
-        Eight eight = new Eight();
-    }
-    
-    
+    }    
 }
