@@ -1,32 +1,26 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class Block here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Block extends Actor
 {
-    public int val;
+    public int value;
     
-    public Block(int val)
+    public Block(int value)
     {
-        this.val = val;
+        this.value = value;
         
-        if (val == 2)
+        if (value == 2)
         {
             setImage("images/two.png");
         }
-        if (val == 4)
+        if (value == 4)
         {
             setImage("images/four.png");
         }
-        if (val == 8)
+        if (value == 8)
         {
             setImage("images/eight.png");
         }
-        if (val == 16)
+        if (value == 16)
         {
             setImage("images/sixteen.png");
         }
@@ -37,13 +31,20 @@ public class Block extends Actor
         // Add your action code here.
     }
     
-    public int getVal()
+    public void merge(Block block)
     {
-        return this.val;
-    }
-    
-    public void merge2()
-    {
+        int topValue = this.value;
+        int bottomValue = block.value;
+        if(topValue != bottomValue) {
+            return;
+        }
         
+        int x = block.getX();
+        int y = block.getY();
+        getWorld().removeObject(block); // remove bottom block
+        Block newBlock = new Block(topValue + bottomValue);
+        getWorld().addObject(newBlock, x, y);
+        
+        getWorld().removeObject(this);
     }
 }
