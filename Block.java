@@ -109,12 +109,7 @@ public class Block extends Actor
     
     public void moveDown()
     {
-        if (getY() < 430)
-        {
-            setLocation(getX(), getY() + 120);
-        }
-        
-        else
+        if (getY() >= 430)
         {
             return;
         }
