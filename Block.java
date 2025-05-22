@@ -3,10 +3,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Block extends Actor
 {
     public int value;
+    
+    boolean overlap = false;
+    
     public static boolean goUp = false;
     public static boolean goDown = false;
     public static boolean goLeft = false; 
     public static boolean goRight = false; 
+    
     
     public Block(int value)
     {
@@ -14,19 +18,69 @@ public class Block extends Actor
         
         if (value == 2)
         {
-            setImage("images/two.png");
+            GreenfootImage img = new GreenfootImage("images/_2.png");
+            img.scale(110, 110);
+            setImage(img);
         }
         if (value == 4)
         {
-            setImage("images/four.png");
+            GreenfootImage img = new GreenfootImage("images/_4.png");
+            img.scale(110, 110);
+            setImage(img);
         }
         if (value == 8)
         {
-            setImage("images/eight.png");
+            GreenfootImage img = new GreenfootImage("images/_8.png");
+            img.scale(110, 110);
+            setImage(img);
         }
         if (value == 16)
         {
-            setImage("images/sixteen.png");
+            GreenfootImage img = new GreenfootImage("images/_16.png");
+            img.scale(110, 110);
+            setImage(img);
+        }
+        if (value == 32)
+        {
+            GreenfootImage img = new GreenfootImage("images/_32.png");
+            img.scale(110, 110);
+            setImage(img);
+        }
+        if (value == 64)
+        {
+            GreenfootImage img = new GreenfootImage("images/_64.png");
+            img.scale(110, 110);
+            setImage(img);
+        }
+        if (value == 128)
+        {
+            GreenfootImage img = new GreenfootImage("images/_128.png");
+            img.scale(110, 110);
+            setImage(img);
+        }
+        if (value == 256)
+        {
+            GreenfootImage img = new GreenfootImage("images/256.png");
+            img.scale(110, 110);
+            setImage(img);
+        }
+        if (value == 512)
+        {
+            GreenfootImage img = new GreenfootImage("images/512.png");
+            img.scale(110, 110);
+            setImage(img);
+        }
+        if (value == 1024)
+        {
+            GreenfootImage img = new GreenfootImage("images/1024.png");
+            img.scale(110, 110);
+            setImage(img);
+        }
+        if (value == 2024)
+        {
+            GreenfootImage img = new GreenfootImage("images/_2024.png");
+            img.scale(110, 110);
+            setImage(img);
         }
     }
     
@@ -51,6 +105,14 @@ public class Block extends Actor
         {
             moveRight();
         }
+        
+        //merge another block that interects this one
+        Actor other = getOneIntersectingObject(Block.class);
+        Block otherBlock = (Block) other;
+        if (other != null)
+        {
+            merge(otherBlock);
+        }
     }
     
     public void merge(Block block)
@@ -59,6 +121,7 @@ public class Block extends Actor
         int bottomValue = block.value;
         
         if(topValue != bottomValue) {
+            overlap = true;
             return;
         }
         
@@ -77,6 +140,12 @@ public class Block extends Actor
         if (getY() > 70)
         {
             setLocation(getX(), getY() - 120);
+            
+            if (overlap == true)
+            {
+                //try to move it out of the way
+                overlap = false;
+            }
         }
         else
         {
@@ -109,28 +178,14 @@ public class Block extends Actor
     
     public void moveDown()
     {
-        if (getY() >= 430)
+        if (getY() < 430)
+        {
+            setLocation(getX(), getY() + 120);
+        }
+        
+        else
         {
             return;
         }
-    
-        //gets the block object at the specified position
-        //returns null if no block object found
-        Actor bottom = getOneObjectAtOffset(this.getX(), this.getY() -120, Block.class);
-        
-        if (bottom != null)
-        {
-            Block bottBlock = (Block) bottom;
-            if (bottBlock.value == this.value)
-            {
-                merge(bottBlock);
-            }
-            else
-            {
-                return;
-            }
-        }
-        
-        setLocation(getX(), getY() + 120);
     }
 }

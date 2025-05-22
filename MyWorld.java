@@ -105,12 +105,13 @@ public class MyWorld extends World {
     
     //for creating new blocks when any of the arrow keys are pressed
     public void createNewBlocks()
-    {
+    {   
+        //no objects at the random location 
         int randX = Greenfoot.getRandomNumber(4);
         int randY = Greenfoot.getRandomNumber(4);
         int x = 70 + (randX * 120);
         int y = 70 + (randY * 120);
-            
+                
         //randomizes whether to create a new 2 or 4(5% chance)
         int twoOrFour = Greenfoot.getRandomNumber(6);
         if (twoOrFour == 1)
