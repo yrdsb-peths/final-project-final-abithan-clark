@@ -5,6 +5,8 @@ public class Block extends Actor
     public int value;
     public static boolean goUp = false;
     public static boolean goDown = false;
+    public static boolean goLeft = false; 
+    public static boolean goRight = false; 
     
     public Block(int value)
     {
@@ -40,6 +42,15 @@ public class Block extends Actor
         {
             moveDown();
         }
+        if (goLeft == true)
+        { 
+            moveLeft();
+        }
+        
+        if (goRight == true)
+        {
+            moveRight();
+        }
     }
     
     public void merge(Block block)
@@ -72,6 +83,29 @@ public class Block extends Actor
             return;
         }
     }
+    public void moveLeft()
+    {
+        if (getX() > 70) 
+        {
+            setLocation(getX() - 120, getY());
+        }
+        else
+        {
+            return;
+        }
+    }
+    public void moveRight()
+    {
+        if (getX() < 430)
+        {
+            setLocation(getX() + 120, getY());
+        }
+        
+        else
+        {
+            return;
+        }
+    }
     
     public void moveDown()
     {
@@ -79,6 +113,7 @@ public class Block extends Actor
         {
             setLocation(getX(), getY() + 120);
         }
+        
         else
         {
             return;

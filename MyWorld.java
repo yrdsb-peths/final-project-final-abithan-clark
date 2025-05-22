@@ -5,6 +5,10 @@ import greenfoot.*;
 public class MyWorld extends World {
     Block two1;
     Block two2;
+    private boolean upPressed = false;
+    private boolean downPressed = false;
+    private boolean leftPressed = false;
+    private boolean rightPressed = false;
     public MyWorld() {
         super(500, 500, 1);
         
@@ -19,24 +23,55 @@ public class MyWorld extends World {
     }
     
     //code is in act so it keeps checking for keypresses
-    public void act()
-    {
-        if (Greenfoot.isKeyDown("up"))
+    public void act() {
+        if (Greenfoot.isKeyDown("up")) 
         {
-            Block.goUp = true;
-        }
-        else
+            if (!upPressed) {
+                Block.goUp = true;
+                createNewBlocks();
+                upPressed = true;
+            }
+        } else 
         {
             Block.goUp = false;
+            upPressed = false;
         }
-        
-        if (Greenfoot.isKeyDown("down"))
+    
+        if (Greenfoot.isKeyDown("down")) 
         {
-            Block.goDown = true;
-        }
-        else
+            if (!downPressed) {
+                Block.goDown = true;
+                createNewBlocks();
+                downPressed = true;
+            }
+        } else 
         {
             Block.goDown = false;
+            downPressed = false;
+        }
+    
+        if (Greenfoot.isKeyDown("left")) 
+        {
+            if (!leftPressed) {
+                Block.goLeft = true;
+                createNewBlocks();
+                leftPressed = true;
+            }
+        } else 
+        {
+            Block.goLeft = false;
+            leftPressed = false;
+        }
+
+        if (Greenfoot.isKeyDown("right")) {
+            if (!rightPressed) {
+                Block.goRight = true;
+                createNewBlocks();
+                rightPressed = true;
+            }
+        } else {
+            Block.goRight = false;
+            rightPressed = false;
         }
     }
     
@@ -95,7 +130,7 @@ public class MyWorld extends World {
         int randY = Greenfoot.getRandomNumber(4);
         int x = 70 + (randX * 120);
         int y = 70 + (randY * 120);
-        
+            
         //randomizes whether to create a new 2 or 4(5% chance)
         int twoOrFour = Greenfoot.getRandomNumber(6);
         if (twoOrFour == 1)
