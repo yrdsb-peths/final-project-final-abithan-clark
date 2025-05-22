@@ -75,13 +75,28 @@ public class Block extends Actor
     
     public void moveDown()
     {
-        if (getY() < 430)
-        {
-            setLocation(getX(), getY() + 120);
-        }
-        else
+        if (getY() >= 430)
         {
             return;
         }
+    
+        //gets the block object at the specified position
+        //returns null if no block object found
+        Actor bottom = getOneObjectAtOffset(this.getX(), this.getY() -120, Block.class);
+        
+        if (bottom != null)
+        {
+            Block bottBlock = (Block) bottom;
+            if (bottBlock.value == this.value)
+            {
+                merge(bottBlock);
+            }
+            else
+            {
+                return;
+            }
+        }
+        
+        setLocation(getX(), getY() + 120);
     }
 }

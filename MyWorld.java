@@ -15,7 +15,6 @@ public class MyWorld extends World {
         
         //creates two 2 blocks at a random position
         randPos();
-
     }
     
     //code is in act so it keeps checking for keypresses
