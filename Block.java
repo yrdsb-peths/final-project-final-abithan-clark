@@ -120,8 +120,8 @@ public class Block extends Actor
         int topValue = this.value;
         int bottomValue = block.value;
         
-        if(topValue != bottomValue) {
-            overlap = true;
+        if(topValue != bottomValue)
+        {
             return;
         }
         
@@ -140,12 +140,6 @@ public class Block extends Actor
         if (getY() > 70)
         {
             setLocation(getX(), getY() - 120);
-            
-            if (overlap == true)
-            {
-                //try to move it out of the way
-                overlap = false;
-            }
         }
         else
         {

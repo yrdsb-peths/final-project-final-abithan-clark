@@ -101,6 +101,11 @@ public class MyWorld extends World {
         
         addObject(two1, x1, y1);
         addObject(two2, x2, y2);
+        
+        //use a grid: arr or 2d arr to track location of blocks and only
+        //use createNewBlocks if space empty 
+        //use a for loop to loop through the arr and check if arr spot empty
+    
     } 
     
     //for creating new blocks when any of the arrow keys are pressed
