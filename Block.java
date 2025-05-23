@@ -76,9 +76,9 @@ public class Block extends Actor
             img.scale(110, 110);
             setImage(img);
         }
-        if (value == 2024)
+        if (value == 2048)
         {
-            GreenfootImage img = new GreenfootImage("images/_2024.png");
+            GreenfootImage img = new GreenfootImage("images/_2048.png");
             img.scale(110, 110);
             setImage(img);
         }
