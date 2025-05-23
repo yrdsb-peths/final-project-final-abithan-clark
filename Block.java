@@ -60,19 +60,19 @@ public class Block extends Actor
         }
         if (value == 256)
         {
-            GreenfootImage img = new GreenfootImage("images/256.png");
+            GreenfootImage img = new GreenfootImage("images/_256.png");
             img.scale(110, 110);
             setImage(img);
         }
         if (value == 512)
         {
-            GreenfootImage img = new GreenfootImage("images/512.png");
+            GreenfootImage img = new GreenfootImage("images/_512.png");
             img.scale(110, 110);
             setImage(img);
         }
         if (value == 1024)
         {
-            GreenfootImage img = new GreenfootImage("images/1024.png");
+            GreenfootImage img = new GreenfootImage("images/_1024.png");
             img.scale(110, 110);
             setImage(img);
         }
