@@ -5,6 +5,8 @@ import greenfoot.*;
 public class MyWorld extends World {
     Block two1;
     Block two2;
+    //use an int 2d arr to keep track of the grid
+    public int[][] grid = new int[4][4];
     
     private boolean upPressed = false;
     private boolean downPressed = false;
@@ -19,14 +21,15 @@ public class MyWorld extends World {
         two1 = new Block(2);
         two2 = new Block(2);
         
-        //creates two 2 blocks at a random position
+        //creates two random positioned 2 blocks
         randPos();
     }
     
-    //code is in act so it keeps checking for keypresses
+        //code is in act so it keeps checking for keypresses
     public void act() {
         if (Greenfoot.isKeyDown("up")) 
         {
+            //makes sure blocks dont just instantly fill uo the world
             if (!upPressed) {
                 Block.goUp = true;
                 createNewBlocks();
@@ -102,16 +105,14 @@ public class MyWorld extends World {
         addObject(two1, x1, y1);
         addObject(two2, x2, y2);
         
-        //use a grid: arr or 2d arr to track location of blocks and only
-        //use createNewBlocks if space empty 
-        //use a for loop to loop through the arr and check if arr spot empty
-    
+        //1 means the block is occupied and 0 means its not
+        grid[randX1][randY1] = 1;
+        grid[randX2][randY2] = 1;
     } 
     
-    //for creating new blocks when any of the arrow keys are pressed
+    
     public void createNewBlocks()
     {   
-        //no objects at the random location 
         int randX = Greenfoot.getRandomNumber(4);
         int randY = Greenfoot.getRandomNumber(4);
         int x = 70 + (randX * 120);
