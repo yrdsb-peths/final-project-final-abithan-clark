@@ -24,7 +24,11 @@ public class MyWorld extends World {
     }
     
     //code is in act so it keeps checking for keypresses
-    public void act() {
+    public void act() 
+    {
+        Label scoreLabel = new Label("score: " + Block.score, 100);
+        addObject(scoreLabel, 70, 70);
+        
         if (Greenfoot.isKeyDown("up")) 
         {
             if (!upPressed) {
@@ -74,6 +78,11 @@ public class MyWorld extends World {
             Block.goRight = false;
             rightPressed = false;
         }
+        
+        if(Block.value == 2048)
+        {
+            win();
+        }
     }
     
     public void randPos()
@@ -106,7 +115,14 @@ public class MyWorld extends World {
         //use createNewBlocks if space empty 
         //use a for loop to loop through the arr and check if arr spot empty
     
-    } 
+    }
+
+    //creates a you win text when player reaches 2048 value on blocks
+    public void win()
+    {
+        Label winnerLabel = new Label("You Win", 100);
+        addObject(winnerLabel, 250, 250);
+    }
     
     //for creating new blocks when any of the arrow keys are pressed
     public void createNewBlocks()

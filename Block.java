@@ -2,10 +2,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Block extends Actor
 {
-    public int value;
-    
     boolean overlap = false;
     
+    public static int value;
+    public static int score = 0; 
     public static boolean goUp = false;
     public static boolean goDown = false;
     public static boolean goLeft = false; 
@@ -27,6 +27,7 @@ public class Block extends Actor
             GreenfootImage img = new GreenfootImage("images/_4.png");
             img.scale(110, 110);
             setImage(img);
+            
         }
         if (value == 8)
         {
@@ -124,6 +125,8 @@ public class Block extends Actor
         {
             return;
         }
+        
+        score += (topValue + bottomValue);
         
         int x = block.getX();
         int y = block.getY();
