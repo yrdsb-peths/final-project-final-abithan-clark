@@ -2,14 +2,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Block extends Actor
 {
-    public int value;
-    
     boolean overlap = false;
     
+    public int value;    
     public static boolean goUp = false;
     public static boolean goDown = false;
     public static boolean goLeft = false; 
     public static boolean goRight = false;
+    
+    
     
     public Block(int value)
     {
@@ -85,7 +86,6 @@ public class Block extends Actor
     
     public void act()
     {
-        //lets the block move down when this variable is set to true
         if (goUp == true)
         {
             moveUp();
@@ -105,7 +105,7 @@ public class Block extends Actor
         {
             moveRight();
         }
-        
+    
         //merge another block that interects this one
         Actor other = getOneIntersectingObject(Block.class);
         Block otherBlock = (Block) other;
@@ -122,7 +122,6 @@ public class Block extends Actor
         
         if(topValue != bottomValue)
         {
-            
             return;
         }
         

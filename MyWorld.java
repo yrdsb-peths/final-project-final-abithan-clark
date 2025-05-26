@@ -117,18 +117,11 @@ public class MyWorld extends World {
         int randY = Greenfoot.getRandomNumber(4);
         int x = 70 + (randX * 120);
         int y = 70 + (randY * 120);
-                
+        
         //randomizes whether to create a new 2 or 4(5% chance)
         int twoOrFour = Greenfoot.getRandomNumber(6);
-        if (twoOrFour == 1)
-        {
-            Block four = new Block(4);
-            addObject(four, x, y);
-        }
-        else
-        {
-            Block two = new Block(2);
-            addObject(two, x, y);
-        }
+        Block block = (twoOrFour == 1) ? new Block(4) : new Block(2);
+        
+        addObject(block, x, y);
     }
 }
