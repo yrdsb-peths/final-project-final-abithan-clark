@@ -6,10 +6,12 @@ public class Block extends Actor
     
     public static int value;
     public static int score = 0; 
+
     public static boolean goUp = false;
     public static boolean goDown = false;
     public static boolean goLeft = false; 
-    public static boolean goRight = false; 
+    public static boolean goRight = false;
+    
     
     
     public Block(int value)
@@ -87,9 +89,8 @@ public class Block extends Actor
     
     public void act()
     {
-        //lets the block move down when this variable is set to true
         if (goUp == true)
-        { 
+        {
             moveUp();
         }
         
@@ -97,8 +98,9 @@ public class Block extends Actor
         {
             moveDown();
         }
+        
         if (goLeft == true)
-        { 
+        {
             moveLeft();
         }
         
@@ -106,7 +108,7 @@ public class Block extends Actor
         {
             moveRight();
         }
-        
+    
         //merge another block that interects this one
         Actor other = getOneIntersectingObject(Block.class);
         Block otherBlock = (Block) other;
@@ -130,59 +132,46 @@ public class Block extends Actor
         
         int x = block.getX();
         int y = block.getY();
-        getWorld().removeObject(block); // remove bottom block
+        
+        // remove merging blocks
+        getWorld().removeObject(block); 
+        
+        //create the new merged block
         Block newBlock = new Block(topValue + bottomValue);
         getWorld().addObject(newBlock, x, y);
         
-        getWorld().removeObject(this); //remove current instance 
+        getWorld().removeObject(this);
     }
     
     public void moveUp()
-    {
-        //makes sure the block 
+    {        
         if (getY() > 70)
         {
             setLocation(getX(), getY() - 120);
         }
-        else
-        {
-            return;
-        }
-    }
-    public void moveLeft()
-    {
-        if (getX() > 70) 
-        {
-            setLocation(getX() - 120, getY());
-        }
-        else
-        {
-            return;
-        }
-    }
-    public void moveRight()
-    {
-        if (getX() < 430)
-        {
-            setLocation(getX() + 120, getY());
-        }
-        
-        else
-        {
-            return;
-        }
     }
     
     public void moveDown()
-    {
+    {        
         if (getY() < 430)
         {
             setLocation(getX(), getY() + 120);
         }
-        
-        else
+    }
+    
+    public void moveLeft()
+    {        
+        if (getX() > 70)
         {
-            return;
+            setLocation(getX() - 120, getY());
+        }
+    }
+    
+    public void moveRight()
+    {        
+        if (getX() < 430)
+        {
+            setLocation(getX() + 120, getY());
         }
     }
 }
