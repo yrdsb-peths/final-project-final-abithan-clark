@@ -26,10 +26,11 @@ public class MyWorld extends World {
     }
     
     //code is in act so it keeps checking for keypresses
-    public void act() {
+    public void act()
+    {
         if (Greenfoot.isKeyDown("up")) 
         {
-            //makes sure blocks dont just instantly fill uo the world
+            //makes sure blocks dont just instantly fill up the world
             if (!upPressed) {
                 Block.goUp = true;
                 createNewBlocks();
@@ -124,15 +125,48 @@ public class MyWorld extends World {
     
     public void createNewBlocks()
     {   
-        int randX = Greenfoot.getRandomNumber(4);
-        int randY = Greenfoot.getRandomNumber(4);
-        int x = 70 + (randX * 120);
-        int y = 70 + (randY * 120);
+        //checking if the board is full
+        int emptySpots = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                if (grid[i][j] == 0)
+                {
+                    emptySpots++;
+                }
+            }
+        }
         
-        //randomizes whether to create a new 2 or 4(5% chance)
-        int twoOrFour = Greenfoot.getRandomNumber(6);
-        Block block = (twoOrFour == 1) ? new Block(4) : new Block(2);
+        if (emptySpots == 0)
+        {
+            return;
+        }
         
-        addObject(block, x, y);
+        // Find a random empty spot
+        int randSpot = Greenfoot.getRandomNumber(emptySpots);
+        int count = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                if (grid[i][j] == 0)
+                {
+                    if (count == randSpot)
+                    {
+                        //randomizes to create a new 2 or 4(5% chance)
+                        int twoOrFour = Greenfoot.getRandomNumber(6);
+                        Block block = (twoOrFour == 1) ? new Block(4) : new Block(2);
+    
+                        int x = 70 + (i * 120);
+                        int y = 70 + (j * 120);
+                        addObject(block, x, y);
+                        grid[i][j] = 1; // mark as full
+                        return;
+                    }
+                    count++;
+                }
+            }
+        }
     }
 }

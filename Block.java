@@ -1,9 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Block extends Actor
-{
-    boolean overlap = false;
-    
+{    
     public static int value;
     public static int score = 0; 
 
