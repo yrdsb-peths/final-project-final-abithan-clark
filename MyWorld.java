@@ -26,12 +26,6 @@ public class MyWorld extends World {
     }
     
     //code is in act so it keeps checking for keypresses
-    public void act() 
-    {
-        Label scoreLabel = new Label("score: " + Block.score, 100);
-        addObject(scoreLabel, 70, 70);
-    
-    //code is in act so it keeps checking for keypresses
     public void act() {
         if (Greenfoot.isKeyDown("up")) 
         {
