@@ -86,10 +86,11 @@ public class Block extends Actor
     }
     
     public void act()
-    {
+    {        
         if (goUp == true)
         {
             moveUp();
+            world.createNewBlocks();
         }
         
         if (goDown == true)
@@ -135,22 +136,37 @@ public class Block extends Actor
         getWorld().removeObject(block); 
         
         //create the new merged block
-        Block newBlock = new Block(topValue + bottomValue);
+        int mergeValue = (topValue!= 2048) ? topValue + bottomValue : topValue;
+        Block newBlock = new Block(mergeValue);
         getWorld().addObject(newBlock, x, y);
         
         getWorld().removeObject(this);
     }
     
     public void moveUp()
-    {        
+    {   
+        MyWorld world = (MyWorld) getWorld();
+        int xGrid = (getX() - 70) / 120;
+        
         if (getY() > 70)
         {
+            for (int i = 3; i > 0; i --)
+            {
+                if (world.grid[xGrid][i] == 0)
+                {
+                    setLocation(getX(), 70);
+                    return;
+                }
+            }
             setLocation(getX(), getY() - 120);
         }
     }
     
     public void moveDown()
-    {        
+    {   
+        MyWorld world = (MyWorld) getWorld();
+        int xGrid = (getX() - 70) / 120;
+        
         if (getY() < 430)
         {
             setLocation(getX(), getY() + 120);
@@ -159,6 +175,9 @@ public class Block extends Actor
     
     public void moveLeft()
     {        
+        MyWorld world = (MyWorld) getWorld();
+        int yGrid = (getY() - 70) / 120;
+        
         if (getX() > 70)
         {
             setLocation(getX() - 120, getY());
@@ -166,7 +185,10 @@ public class Block extends Actor
     }
     
     public void moveRight()
-    {        
+    {      
+        MyWorld world = (MyWorld) getWorld();
+        int yGrid = (getY() - 70) / 120;
+        
         if (getX() < 430)
         {
             setLocation(getX() + 120, getY());

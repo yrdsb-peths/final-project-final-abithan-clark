@@ -33,7 +33,6 @@ public class MyWorld extends World {
             //makes sure blocks dont just instantly fill up the world
             if (!upPressed) {
                 Block.goUp = true;
-                createNewBlocks();
                 upPressed = true;
             }
         } else 
@@ -46,7 +45,6 @@ public class MyWorld extends World {
         {
             if (!downPressed) {
                 Block.goDown = true;
-                createNewBlocks();
                 downPressed = true;
             }
         } else 
@@ -59,7 +57,6 @@ public class MyWorld extends World {
         {
             if (!leftPressed) {
                 Block.goLeft = true;
-                createNewBlocks();
                 leftPressed = true;
             }
         } else 
@@ -71,7 +68,6 @@ public class MyWorld extends World {
         if (Greenfoot.isKeyDown("right")) {
             if (!rightPressed) {
                 Block.goRight = true;
-                createNewBlocks();
                 rightPressed = true;
             }
         } else {
