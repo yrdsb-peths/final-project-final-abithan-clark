@@ -17,7 +17,7 @@ public class TitleScreen extends World
     public TitleScreen()
     {      
         super(540, 318, 1); 
-        
+        setBackground("images/titlescreen.jpg");
         addObject(startLabel, 405, 250);
        
     }

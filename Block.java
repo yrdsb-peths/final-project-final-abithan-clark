@@ -11,7 +11,6 @@ public class Block extends Actor
     public static boolean goRight = false;
     
     
-    
     public Block(int value)
     {
         this.value = value;
@@ -86,7 +85,8 @@ public class Block extends Actor
     }
     
     public void act()
-    {        
+    {   MyWorld world = (MyWorld) getWorld();
+        
         if (goUp == true)
         {
             moveUp();
@@ -150,15 +150,14 @@ public class Block extends Actor
         
         if (getY() > 70)
         {
-            for (int i = 3; i > 0; i --)
+            for (int i = 0; i < 4; i++)
             {
                 if (world.grid[xGrid][i] == 0)
                 {
-                    setLocation(getX(), 70);
+                    setLocation(getX(), (i * 120) + 70);
                     return;
                 }
             }
-            setLocation(getX(), getY() - 120);
         }
     }
     
