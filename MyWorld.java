@@ -3,8 +3,6 @@
 import greenfoot.*;
 
 public class MyWorld extends World {
-    Block two1;
-    Block two2;
     //use an int 2d arr to keep track of the grid
     public int[][] grid = new int[4][4];
     
@@ -17,17 +15,13 @@ public class MyWorld extends World {
         GreenfootImage bg = new GreenfootImage("images/background.png");
         bg.scale(500, 501);
         setBackground(bg);
-                
-        two1 = new Block(2);
-        two2 = new Block(2);
-        
         //creates two random positioned 2 blocks
         randPos();
     }
     
     //code is in act so it keeps checking for keypresses
     public void act()
-    {
+    {   
         if (Greenfoot.isKeyDown("up")) 
         {
             //makes sure blocks dont just instantly fill up the world
@@ -87,6 +81,9 @@ public class MyWorld extends World {
     
     public void randPos()
     {
+        Block two1 = new Block(2);
+        Block two2 = new Block(2);
+        
         //random position for one random spawning two block
         int randX1 = Greenfoot.getRandomNumber(4);
         int randY1 = Greenfoot.getRandomNumber(4);

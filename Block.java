@@ -14,73 +14,9 @@ public class Block extends Actor
     {
         this.value = value;
         
-        if (value == 2)
-        {
-            GreenfootImage img = new GreenfootImage("images/_2.png");
-            img.scale(110, 110);
-            setImage(img);
-        }
-        if (value == 4)
-        {
-            GreenfootImage img = new GreenfootImage("images/_4.png");
-            img.scale(110, 110);
-            setImage(img);
-            
-        }
-        if (value == 8)
-        {
-            GreenfootImage img = new GreenfootImage("images/_8.png");
-            img.scale(110, 110);
-            setImage(img);
-        }
-        if (value == 16)
-        {
-            GreenfootImage img = new GreenfootImage("images/_16.png");
-            img.scale(110, 110);
-            setImage(img);
-        }
-        if (value == 32)
-        {
-            GreenfootImage img = new GreenfootImage("images/_32.png");
-            img.scale(110, 110);
-            setImage(img);
-        }
-        if (value == 64)
-        {
-            GreenfootImage img = new GreenfootImage("images/_64.png");
-            img.scale(110, 110);
-            setImage(img);
-        }
-        if (value == 128)
-        {
-            GreenfootImage img = new GreenfootImage("images/_128.png");
-            img.scale(110, 110);
-            setImage(img);
-        }
-        if (value == 256)
-        {
-            GreenfootImage img = new GreenfootImage("images/_256.png");
-            img.scale(110, 110);
-            setImage(img);
-        }
-        if (value == 512)
-        {
-            GreenfootImage img = new GreenfootImage("images/_512.png");
-            img.scale(110, 110);
-            setImage(img);
-        }
-        if (value == 1024)
-        {
-            GreenfootImage img = new GreenfootImage("images/_1024.png");
-            img.scale(110, 110);
-            setImage(img);
-        }
-        if (value == 2048)
-        {
-            GreenfootImage img = new GreenfootImage("images/_2048.png");
-            img.scale(110, 110);
-            setImage(img);
-        }
+        GreenfootImage img = new GreenfootImage("images/_" + value + ".png");
+        img.scale(110, 110);
+        setImage(img);
     }
     
     public void act()
