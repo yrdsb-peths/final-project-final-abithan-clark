@@ -34,6 +34,7 @@ public class MyWorld extends World {
             if (!upPressed) {
                 Block.goUp = true;
                 upPressed = true;
+                createNewBlocks();
             }
         } else 
         {
@@ -46,6 +47,7 @@ public class MyWorld extends World {
             if (!downPressed) {
                 Block.goDown = true;
                 downPressed = true;
+                createNewBlocks();
             }
         } else 
         {
@@ -58,6 +60,7 @@ public class MyWorld extends World {
             if (!leftPressed) {
                 Block.goLeft = true;
                 leftPressed = true;
+                createNewBlocks();
             }
         } else 
         {
@@ -69,6 +72,7 @@ public class MyWorld extends World {
             if (!rightPressed) {
                 Block.goRight = true;
                 rightPressed = true;
+                createNewBlocks();
             }
         } else {
             Block.goRight = false;
@@ -136,6 +140,8 @@ public class MyWorld extends World {
         
         if (emptySpots == 0)
         {
+            EndScreen endscreen = new EndScreen();
+            Greenfoot.setWorld(endscreen); 
             return;
         }
         

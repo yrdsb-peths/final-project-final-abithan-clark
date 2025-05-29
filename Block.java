@@ -9,8 +9,7 @@ public class Block extends Actor
     public static boolean goDown = false;
     public static boolean goLeft = false; 
     public static boolean goRight = false;
-    
-    
+        
     public Block(int value)
     {
         this.value = value;
@@ -90,7 +89,6 @@ public class Block extends Actor
         if (goUp == true)
         {
             moveUp();
-            world.createNewBlocks();
         }
         
         if (goDown == true)
@@ -132,7 +130,7 @@ public class Block extends Actor
         int x = block.getX();
         int y = block.getY();
         
-        // remove merging blocks
+        //remove merging blocks
         getWorld().removeObject(block); 
         
         //create the new merged block
@@ -147,17 +145,19 @@ public class Block extends Actor
     {   
         MyWorld world = (MyWorld) getWorld();
         int xGrid = (getX() - 70) / 120;
+        int yGrid = (getY() - 70) / 120;
         
         if (getY() > 70)
         {
-            for (int i = 0; i < 4; i++)
-            {
-                if (world.grid[xGrid][i] == 0)
-                {
-                    setLocation(getX(), (i * 120) + 70);
-                    return;
-                }
-            }
+            //clear the current location on the grid
+            world.grid[xGrid][yGrid] = 0;
+            
+            setLocation(getX(), getY() - 120);
+            
+            //update the new grid positons after moving
+            xGrid = (getX() - 70) / 120;
+            yGrid = (getY() - 70) / 120;
+            world.grid[xGrid][yGrid] = 1;
         }
     }
     
@@ -165,32 +165,53 @@ public class Block extends Actor
     {   
         MyWorld world = (MyWorld) getWorld();
         int xGrid = (getX() - 70) / 120;
+        int yGrid = (getY() - 70) / 120;
         
         if (getY() < 430)
-        {
+        {   
+            world.grid[xGrid][yGrid] = 0;
+            
             setLocation(getX(), getY() + 120);
+            
+            xGrid = (getX() - 70) / 120;
+            yGrid = (getY() - 70) / 120;
+            world.grid[xGrid][yGrid] = 1;
         }
     }
     
     public void moveLeft()
     {        
         MyWorld world = (MyWorld) getWorld();
+        int xGrid = (getX() - 70) / 120;
         int yGrid = (getY() - 70) / 120;
         
         if (getX() > 70)
         {
+            world.grid[xGrid][yGrid] = 0;
+            
             setLocation(getX() - 120, getY());
+            
+            xGrid = (getX() - 70) / 120;
+            yGrid = (getY() - 70) / 120;
+            world.grid[xGrid][yGrid] = 1;
         }
     }
     
     public void moveRight()
     {      
         MyWorld world = (MyWorld) getWorld();
+        int xGrid = (getX() - 70) / 120;
         int yGrid = (getY() - 70) / 120;
         
         if (getX() < 430)
         {
+            world.grid[xGrid][yGrid] = 0;
+            
             setLocation(getX() + 120, getY());
+            
+            xGrid = (getX() - 70) / 120;
+            yGrid = (getY() - 70) / 120;
+            world.grid[xGrid][yGrid] = 1;
         }
     }
 }
