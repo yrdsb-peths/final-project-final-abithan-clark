@@ -10,15 +10,16 @@ public class EndScreen extends World
 {
     Label endLabel = new Label("You lose", 100);
     Label restart = new Label("try again", 50);
+    Label scoreLabel = new Label("score: " + Block.score, 60);
     public EndScreen()
     {    
         super(600, 400, 1); 
         
         setBackground("images/endscreen.jpg");
         
-        //add score to endscreen
-        addObject(endLabel, 300, 150);
-        addObject(restart, 300, 250);
+        addObject(scoreLabel, 300, 225);
+        addObject(endLabel, 300, 100);
+        addObject(restart, 300, 325);
     }
     
     public void act()
