@@ -10,6 +10,8 @@ public class MyWorld extends World {
     private boolean downPressed = false;
     private boolean leftPressed = false;
     private boolean rightPressed = false;
+    
+    public boolean win = false;
     public MyWorld() {
         super(500, 500, 1);
         GreenfootImage bg = new GreenfootImage("images/background.png");
@@ -73,9 +75,10 @@ public class MyWorld extends World {
             rightPressed = false;
         }
         
-        if(Block.value == 2048)
+        if (win == true)
         {
-            win();
+            Label winnerLabel = new Label("You Win", 100);
+            addObject(winnerLabel, 250, 250);
         }
     }
     
@@ -112,13 +115,6 @@ public class MyWorld extends World {
         grid[randX1][randY1] = 1;
         grid[randX2][randY2] = 1;
     } 
-
-    //creates a you win text when player reaches 2048 value on blocks
-    public void win()
-    {
-        Label winnerLabel = new Label("You Win", 100);
-        addObject(winnerLabel, 250, 250);
-    }
     
     public void createNewBlocks()
     {   

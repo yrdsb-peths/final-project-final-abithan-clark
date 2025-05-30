@@ -2,9 +2,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Block extends Actor
 {    
-    public static int value;
+    private int value;
+    
     public static int score = 0; 
-
     public static boolean goUp = false;
     public static boolean goDown = false;
     public static boolean goLeft = false; 
@@ -14,9 +14,8 @@ public class Block extends Actor
     {
         this.value = value;
         
-        GreenfootImage img = new GreenfootImage("images/_" + value + ".png");
-        img.scale(110, 110);
-        setImage(img);
+        setImage(new GreenfootImage("images/_" + value + ".png"));
+        getImage().scale(110, 110);
     }
     
     public void act()
@@ -26,33 +25,41 @@ public class Block extends Actor
         {
             moveUp();
         }
-        
-        if (goDown == true)
+        else if (goDown == true)
         {
             moveDown();
         }
-        
-        if (goLeft == true)
+        else if (goLeft == true)
         {
             moveLeft();
         }
-        
-        if (goRight == true)
+        else if (goRight == true)
         {
             moveRight();
         }
     
         //merge another block that interects this one
-        Actor other = getOneIntersectingObject(Block.class);
-        Block otherBlock = (Block) other;
-        if (other != null)
+        Block otherBlock = (Block)getOneIntersectingObject(Block.class);
+        if (otherBlock != null && this.getValue() == otherBlock.getValue())
         {
             merge(otherBlock);
         }
+        
+        if (getValue() == 2048)
+        {
+            world.win = true;
+        }
     }
     
+    public int getValue()
+    {
+        return value;
+    }
+
     public void merge(Block block)
     {
+        MyWorld world = (MyWorld) getWorld();
+        
         int topValue = this.value;
         int bottomValue = block.value;
         
@@ -61,20 +68,23 @@ public class Block extends Actor
             return;
         }
         
-        score += (topValue + bottomValue);
+        int xBlock = block.getX();
+        int yBlock = block.getY();
+        int xThis = this.getX();
+        int yThis = this.getY();
         
-        int x = block.getX();
-        int y = block.getY();
-        
-        //remove merging blocks
+        //remove both blocks form the world and grid
+        world.grid[(xThis - 70 / 120)][(yThis - 70) / 120] = 0;
         getWorld().removeObject(block); 
+        getWorld().removeObject(this);
         
         //create the new merged block
         int mergeValue = (topValue!= 2048) ? topValue + bottomValue : topValue;
         Block newBlock = new Block(mergeValue);
-        getWorld().addObject(newBlock, x, y);
+        getWorld().addObject(newBlock, xBlock, yBlock);
+        world.grid[(xBlock - 70 / 120)][(yBlock - 70) / 120] = 0;
         
-        getWorld().removeObject(this);
+        score += mergeValue;
     }
     
     public void moveUp()
