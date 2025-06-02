@@ -70,19 +70,20 @@ public class Block extends Actor
         
         int xBlock = block.getX();
         int yBlock = block.getY();
-        int xThis = this.getX();
-        int yThis = this.getY();
+        
+        int xGrid = (this.getX() - 70) / 120;
+        int yGrid = (this.getY() - 70) / 120;
         
         //remove both blocks form the world and grid
-        world.grid[(xThis - 70 / 120)][(yThis - 70) / 120] = 0;
-        getWorld().removeObject(block); 
-        getWorld().removeObject(this);
+        world.grid[xGrid][yGrid] = null;
+        world.removeObject(block); 
+        world.removeObject(this);
         
         //create the new merged block
         int mergeValue = (topValue!= 2048) ? topValue + bottomValue : topValue;
         Block newBlock = new Block(mergeValue);
-        getWorld().addObject(newBlock, xBlock, yBlock);
-        world.grid[(xBlock - 70 / 120)][(yBlock - 70) / 120] = 0;
+        world.addObject(newBlock, xBlock, yBlock);
+        world.grid[(xBlock - 70) / 120][(yBlock - 70) / 120] = 0;
         
         score += mergeValue;
     }
@@ -96,7 +97,7 @@ public class Block extends Actor
         if (getY() > 70)
         {
             //clear the current location on the grid
-            world.grid[xGrid][yGrid] = 0;
+            world.grid[xGrid][yGrid] = null;
             
             setLocation(getX(), getY() - 120);
             
@@ -115,7 +116,7 @@ public class Block extends Actor
         
         if (getY() < 430)
         {   
-            world.grid[xGrid][yGrid] = 0;
+            world.grid[xGrid][yGrid] = null;
             
             setLocation(getX(), getY() + 120);
             
@@ -133,7 +134,7 @@ public class Block extends Actor
         
         if (getX() > 70)
         {
-            world.grid[xGrid][yGrid] = 0;
+            world.grid[xGrid][yGrid] = null;
             
             setLocation(getX() - 120, getY());
             
@@ -150,9 +151,10 @@ public class Block extends Actor
         int xGrid = (getX() - 70) / 120;
         int yGrid = (getY() - 70) / 120;
         
-        if(getX() >= 430) {
+        if(getX() >= 430)
+        {
             return;
-        } else if (..){
+        } else if (world.grid[xGrid + 1][yGrid] != null){
             // Check if block exists to the right, if so, merge correctly
             
         } else {
