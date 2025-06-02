@@ -146,18 +146,26 @@ public class Block extends Actor
     public void moveRight()
     {      
         MyWorld world = (MyWorld) getWorld();
+        // Get the middle spot of the current block
         int xGrid = (getX() - 70) / 120;
         int yGrid = (getY() - 70) / 120;
         
-        if (getX() < 430)
-        {
-            world.grid[xGrid][yGrid] = 0;
+        if(getX() >= 430) {
+            return;
+        } else if (..){
+            // Check if block exists to the right, if so, merge correctly
+            
+        } else {
+       
+            world.grid[xGrid][yGrid] = null; // the old position of the block
             
             setLocation(getX() + 120, getY());
             
             xGrid = (getX() - 70) / 120;
             yGrid = (getY() - 70) / 120;
-            world.grid[xGrid][yGrid] = 1;
-        }
+            world.grid[xGrid][yGrid] = this;
+        } 
     }
+    
+    
 }
