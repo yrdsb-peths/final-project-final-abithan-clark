@@ -4,7 +4,7 @@ import greenfoot.*;
 
 public class MyWorld extends World {
     //use an int 2d arr to keep track of the grid
-    public int[][] grid = new int[4][4];
+    public Block[][] grid = new Block[4][4];
     
     private boolean upPressed = false;
     private boolean downPressed = false;
@@ -64,9 +64,13 @@ public class MyWorld extends World {
 
         if (Greenfoot.isKeyDown("right")) {
             if (!rightPressed) {
-                Block.goRight = true;
-                rightPressed = true;
-                createNewBlocks();
+                // deal with rightmost blocks in the grid
+                Block b = grid[i][j];
+                b.moveRight();
+                // Block.goRight = true;
+                // rightPressed = true;
+                // createNewBlocks();
+                
             }
         } else {
             Block.goRight = false;
@@ -128,7 +132,7 @@ public class MyWorld extends World {
         {
             for (int j = 0; j < 4; j++)
             {
-                if (grid[i][j] == 0)
+                if (grid[i][j] == null)
                 {
                     emptySpots++;
                 }
@@ -149,7 +153,7 @@ public class MyWorld extends World {
         {
             for (int j = 0; j < 4; j++)
             {
-                if (grid[i][j] == 0)
+                if (grid[i][j] == null)
                 {
                     if (count == randSpot)
                     {
@@ -160,7 +164,7 @@ public class MyWorld extends World {
                         int x = 70 + (i * 120);
                         int y = 70 + (j * 120);
                         addObject(block, x, y);
-                        grid[i][j] = 1; // mark as full
+                        grid[i][j] = block; // mark as full
                         return;
                     }
                     count++;
