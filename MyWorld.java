@@ -72,7 +72,10 @@ public class MyWorld extends World {
             Block.goRight = false;
             rightPressed = false;
         }
-        
+        //HARD DIFFICULTY ()
+        //Change controls when reaching a set block number
+        //If they don't figure out controls in 5 secs then it auto moves a random control
+        //Add multiple blocks spawned (2 or 3) per move which can be an 8 value. 
         if(Block.value == 2048)
         {
             win();
