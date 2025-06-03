@@ -28,54 +28,55 @@ public class MyWorld extends World {
         {
             //makes sure blocks dont just instantly fill up the world
             if (!upPressed) {
-                Block.goUp = true;
                 upPressed = true;
                 createNewBlocks();
             }
         } else 
         {
-            Block.goUp = false;
             upPressed = false;
         }
     
         if (Greenfoot.isKeyDown("down")) 
         {
             if (!downPressed) {
-                Block.goDown = true;
                 downPressed = true;
                 createNewBlocks();
             }
         } else 
         {
-            Block.goDown = false;
             downPressed = false;
         }
     
         if (Greenfoot.isKeyDown("left")) 
         {
             if (!leftPressed) {
-                Block.goLeft = true;
                 leftPressed = true;
                 createNewBlocks();
             }
         } else 
         {
-            Block.goLeft = false;
             leftPressed = false;
         }
 
         if (Greenfoot.isKeyDown("right")) {
             if (!rightPressed) {
                 // deal with rightmost blocks in the grid
-                Block b = grid[i][j];
-                b.moveRight();
-                // Block.goRight = true;
-                // rightPressed = true;
-                // createNewBlocks();
+                for (int x = 0; x < 4; x++)
+                {
+                    for (int y = 0; y < 4; y++)
+                    {
+                        if (grid[x][y] != null)
+                        {
+                            Block b = grid[x][y];
+                            b.moveRight();
+                        }
+                    }
+                }
+                rightPressed = true;
+                createNewBlocks();
                 
             }
         } else {
-            Block.goRight = false;
             rightPressed = false;
         }
         
@@ -116,8 +117,8 @@ public class MyWorld extends World {
         addObject(two2, x2, y2);
         
         //1 means the block is occupied and 0 means its not
-        grid[randX1][randY1] = 1;
-        grid[randX2][randY2] = 1;
+        grid[randX1][randY1] = two1;
+        grid[randX2][randY2] = two2;
     } 
     
     public void createNewBlocks()
