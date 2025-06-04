@@ -20,23 +20,6 @@ public class Block extends Actor
     
     public void act()
     {   MyWorld world = (MyWorld) getWorld();
-        
-        /*if (goUp == true)
-        {
-            moveUp();
-        }
-        else if (goDown == true)
-        {
-            moveDown();
-        }
-        else if (goLeft == true)
-        {
-            moveLeft();
-        }
-        else if (goRight == true)
-        {
-            moveRight();
-        }*/
     
         //merge another block that interects this one
         Block otherBlock = (Block)getOneIntersectingObject(Block.class);
@@ -115,6 +98,7 @@ public class Block extends Actor
         
         int xGrid = (getX() - 70) / 120;
         int yGrid = (getY() - 70) / 120;
+        
         if (getY() < 430)
         {   
             world.grid[xGrid][yGrid] = null;
@@ -161,7 +145,9 @@ public class Block extends Actor
             // Check if block exists to the right, if so, merge correctly
             if (world.grid[xGrid + 1][yGrid].getValue() == this.getValue())
             {
+                world.grid[xGrid][yGrid] = null;
                 setLocation(getX() + 120, getY());
+                world.grid[xGrid + 1][yGrid] = this;
             }
             else
             {
@@ -169,14 +155,9 @@ public class Block extends Actor
             }
         } else
         {
-       
             world.grid[xGrid][yGrid] = null; // the old position of the block
-            
             setLocation(getX() + 120, getY());
-            
-            xGrid = (getX() - 70) / 120;
-            yGrid = (getY() - 70) / 120;
-            world.grid[xGrid][yGrid] = this;
-        } 
+            world.grid[xGrid + 1][yGrid] = this;
+        }
     }
 }

@@ -14,9 +14,11 @@ public class MyWorld extends World {
     public boolean win = false;
     public MyWorld() {
         super(500, 500, 1);
+        
         GreenfootImage bg = new GreenfootImage("images/background.png");
         bg.scale(500, 501);
         setBackground(bg);
+        
         //creates two random positioned 2 blocks
         randPos();
     }
@@ -27,7 +29,8 @@ public class MyWorld extends World {
         if (Greenfoot.isKeyDown("up")) 
         {
             //makes sure blocks dont just instantly fill up the world
-            if (!upPressed) {
+            if (!upPressed)
+            {   
                 upPressed = true;
                 createNewBlocks();
             }
@@ -38,7 +41,8 @@ public class MyWorld extends World {
     
         if (Greenfoot.isKeyDown("down")) 
         {
-            if (!downPressed) {
+            if (!downPressed)
+            {
                 downPressed = true;
                 createNewBlocks();
             }
@@ -49,7 +53,8 @@ public class MyWorld extends World {
     
         if (Greenfoot.isKeyDown("left")) 
         {
-            if (!leftPressed) {
+            if (!leftPressed)
+            {   
                 leftPressed = true;
                 createNewBlocks();
             }
@@ -58,8 +63,10 @@ public class MyWorld extends World {
             leftPressed = false;
         }
 
-        if (Greenfoot.isKeyDown("right")) {
-            if (!rightPressed) {
+        if (Greenfoot.isKeyDown("right"))
+        {
+            if (!rightPressed)
+            {
                 // deal with rightmost blocks in the grid
                 for (int x = 0; x < 4; x++)
                 {
@@ -72,11 +79,12 @@ public class MyWorld extends World {
                         }
                     }
                 }
+                
                 rightPressed = true;
                 createNewBlocks();
-                
             }
-        } else {
+        } else
+        {
             rightPressed = false;
         }
         
