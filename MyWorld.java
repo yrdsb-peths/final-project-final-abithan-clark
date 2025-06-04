@@ -4,17 +4,21 @@ import greenfoot.*;
 
 public class MyWorld extends World {
     //use an int 2d arr to keep track of the grid
-    public int[][] grid = new int[4][4];
+    public Block[][] grid = new Block[4][4];
     
     private boolean upPressed = false;
     private boolean downPressed = false;
     private boolean leftPressed = false;
     private boolean rightPressed = false;
+    
+    public boolean win = false;
     public MyWorld() {
         super(500, 500, 1);
+        
         GreenfootImage bg = new GreenfootImage("images/background.png");
         bg.scale(500, 501);
         setBackground(bg);
+        
         //creates two random positioned 2 blocks
         randPos();
     }
@@ -25,51 +29,62 @@ public class MyWorld extends World {
         if (Greenfoot.isKeyDown("up")) 
         {
             //makes sure blocks dont just instantly fill up the world
-            if (!upPressed) {
-                Block.goUp = true;
+            if (!upPressed)
+            {   
                 upPressed = true;
                 createNewBlocks();
             }
         } else 
         {
-            Block.goUp = false;
             upPressed = false;
         }
     
         if (Greenfoot.isKeyDown("down")) 
         {
-            if (!downPressed) {
-                Block.goDown = true;
+            if (!downPressed)
+            {
                 downPressed = true;
                 createNewBlocks();
             }
         } else 
         {
-            Block.goDown = false;
             downPressed = false;
         }
     
         if (Greenfoot.isKeyDown("left")) 
         {
-            if (!leftPressed) {
-                Block.goLeft = true;
+            if (!leftPressed)
+            {   
                 leftPressed = true;
                 createNewBlocks();
             }
         } else 
         {
-            Block.goLeft = false;
             leftPressed = false;
         }
 
-        if (Greenfoot.isKeyDown("right")) {
-            if (!rightPressed) {
-                Block.goRight = true;
+        if (Greenfoot.isKeyDown("right"))
+        {
+            if (!rightPressed)
+            {
+                // deal with rightmost blocks in the grid
+                for (int x = 0; x < 4; x++)
+                {
+                    for (int y = 0; y < 4; y++)
+                    {
+                        if (grid[x][y] != null)
+                        {
+                            Block b = grid[x][y];
+                            b.moveRight();
+                        }
+                    }
+                }
+                
                 rightPressed = true;
                 createNewBlocks();
             }
-        } else {
-            Block.goRight = false;
+        } else
+        {
             rightPressed = false;
         }
         //HARD DIFFICULTY ()
@@ -78,7 +93,8 @@ public class MyWorld extends World {
         //Add multiple blocks spawned (2 or 3) per move which can be an 8 value. 
         if(Block.value == 2048)
         {
-            win();
+            Label winnerLabel = new Label("You Win", 100);
+            addObject(winnerLabel, 250, 250);
         }
     }
     
@@ -112,16 +128,9 @@ public class MyWorld extends World {
         addObject(two2, x2, y2);
         
         //1 means the block is occupied and 0 means its not
-        grid[randX1][randY1] = 1;
-        grid[randX2][randY2] = 1;
+        grid[randX1][randY1] = two1;
+        grid[randX2][randY2] = two2;
     } 
-
-    //creates a you win text when player reaches 2048 value on blocks
-    public void win()
-    {
-        Label winnerLabel = new Label("You Win", 100);
-        addObject(winnerLabel, 250, 250);
-    }
     
     public void createNewBlocks()
     {   
@@ -131,7 +140,7 @@ public class MyWorld extends World {
         {
             for (int j = 0; j < 4; j++)
             {
-                if (grid[i][j] == 0)
+                if (grid[i][j] == null)
                 {
                     emptySpots++;
                 }
@@ -152,7 +161,7 @@ public class MyWorld extends World {
         {
             for (int j = 0; j < 4; j++)
             {
-                if (grid[i][j] == 0)
+                if (grid[i][j] == null)
                 {
                     if (count == randSpot)
                     {
@@ -163,7 +172,7 @@ public class MyWorld extends World {
                         int x = 70 + (i * 120);
                         int y = 70 + (j * 120);
                         addObject(block, x, y);
-                        grid[i][j] = 1; // mark as full
+                        grid[i][j] = block; // mark as full
                         return;
                     }
                     count++;

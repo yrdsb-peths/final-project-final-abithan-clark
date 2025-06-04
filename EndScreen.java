@@ -18,6 +18,8 @@ public class EndScreen extends World
         setBackground("images/endscreen.jpg");
         
         addObject(scoreLabel, 300, 225);
+        Block.score = 0;//reset score
+        
         addObject(endLabel, 300, 100);
         addObject(restart, 300, 325);
     }
