@@ -59,7 +59,8 @@ public class Block extends Actor
         
         //remove both blocks form the world and grid
         world.grid[xGrid][yGrid] = null;
-        world.removeObject(block); 
+        world.removeObject(this);
+        world.removeObject(block);
         
         //create the new merged block
         int mergeValue = (topValue!= 2048) ? topValue + bottomValue : topValue;
@@ -68,7 +69,6 @@ public class Block extends Actor
         world.grid[(xBlock - 70) / 120][(yBlock - 70) / 120] = newBlock;
         
         score += mergeValue;
-        world.removeObject(this);
     }
     
     public void moveUp()
@@ -149,12 +149,20 @@ public class Block extends Actor
                 world.grid[xGrid + 1][yGrid] = this;
                 
                 merge(world.grid[xGrid + 1][yGrid]);
+                
+                world.blockCanSpawn = true;
+            }
+            else
+            {
+                return;
             }
         } else
         {
             world.grid[xGrid][yGrid] = null; // the old position of the block
             setLocation(getX() + 120, getY());
             world.grid[xGrid + 1][yGrid] = this;
+            
+            world.blockCanSpawn = true;
         }
     }
 }

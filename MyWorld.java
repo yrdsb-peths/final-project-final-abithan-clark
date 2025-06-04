@@ -6,12 +6,14 @@ public class MyWorld extends World {
     //use an int 2d arr to keep track of the grid
     public Block[][] grid = new Block[4][4];
     
+    public boolean blockCanSpawn = true;
+    public boolean win = false;
+    
     private boolean upPressed = false;
     private boolean downPressed = false;
     private boolean leftPressed = false;
     private boolean rightPressed = false;
     
-    public boolean win = false;
     public MyWorld() {
         super(500, 500, 1);
         
@@ -76,12 +78,22 @@ public class MyWorld extends World {
                         {
                             Block b = grid[x][y];
                             b.moveRight();
+                            
+                            if (x == 3)
+                            {
+                                blockCanSpawn = false;
+                            }
                         }
                     }
                 }
                 
                 rightPressed = true;
-                createNewBlocks();
+                
+                //only lets new blocks be created when blocks merge/move
+                if (blockCanSpawn == true)
+                {
+                    createNewBlocks();
+                }
             }
         } else
         {
