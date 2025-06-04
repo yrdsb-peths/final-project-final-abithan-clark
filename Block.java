@@ -22,11 +22,11 @@ public class Block extends Actor
     {   MyWorld world = (MyWorld) getWorld();
     
         //merge another block that interects this one
-        Block otherBlock = (Block)getOneIntersectingObject(Block.class);
-        if (otherBlock != null && this.getValue() == otherBlock.getValue())
+        /*Block otherBlock = (Block)getOneIntersectingObject(Block.class);
+        if (otherBlock != null)
         {
             merge(otherBlock);
-        }
+        }*/
         
         if (getValue() == 2048)
         {
@@ -61,12 +61,11 @@ public class Block extends Actor
         world.grid[xGrid][yGrid] = null;
         world.removeObject(block); 
         
-        
         //create the new merged block
         int mergeValue = (topValue!= 2048) ? topValue + bottomValue : topValue;
         Block newBlock = new Block(mergeValue);
         world.addObject(newBlock, xBlock, yBlock);
-        world.grid[(xBlock - 70) / 120][(yBlock - 70) / 120] = null;
+        world.grid[(xBlock - 70) / 120][(yBlock - 70) / 120] = newBlock;
         
         score += mergeValue;
         world.removeObject(this);
@@ -148,10 +147,8 @@ public class Block extends Actor
                 world.grid[xGrid][yGrid] = null;
                 setLocation(getX() + 120, getY());
                 world.grid[xGrid + 1][yGrid] = this;
-            }
-            else
-            {
-                return;
+                
+                merge(world.grid[xGrid + 1][yGrid]);
             }
         } else
         {
