@@ -5,7 +5,6 @@ import greenfoot.*;
 public class MyWorld extends World {
     //use an int 2d arr to keep track of the grid
     public Block[][] grid = new Block[4][4];
-    
     public boolean blockCanSpawn = true;
     public boolean win = false;
     
@@ -14,12 +13,17 @@ public class MyWorld extends World {
     private boolean leftPressed = false;
     private boolean rightPressed = false;
     
+    private int emptySpots = 0;
+    
     public MyWorld() {
         super(500, 500, 1);
         
         GreenfootImage bg = new GreenfootImage("images/background.png");
         bg.scale(500, 501);
         setBackground(bg);
+        
+        //lets block movement look more smooth
+        Greenfoot.setSpeed(57);
         
         //creates two random positioned 2 blocks
         randPos();
@@ -34,7 +38,21 @@ public class MyWorld extends World {
             if (!upPressed)
             {   
                 upPressed = true;
-                createNewBlocks();
+                
+                //check thrice incase blocks move due to another key press
+                //ex. without 3 checks: if up is pressed then down, only
+                //the layer closest to the bottom row will move down
+                
+                for (int i = 0; i < 3; i++)
+                {
+                    upCheck();
+                }
+                
+                //only lets new blocks be created when blocks merge/move
+                if (blockCanSpawn)
+                {
+                    createNewBlocks();
+                }
             }
         } else 
         {
@@ -46,7 +64,17 @@ public class MyWorld extends World {
             if (!downPressed)
             {
                 downPressed = true;
-                createNewBlocks();
+                
+                for (int i = 0; i < 3; i++)
+                {
+                    downCheck();
+                }
+                
+                //only lets new blocks be created when blocks merge/move
+                if (blockCanSpawn)
+                {
+                    createNewBlocks();
+                }
             }
         } else 
         {
@@ -59,17 +87,9 @@ public class MyWorld extends World {
             {   
                 leftPressed = true;
                 
-                //check ever grid spot for a block and check if it can move left
-                for (int x = 0; x < 4; x++)
+                for (int i = 0; i < 3; i++)
                 {
-                    for (int y = 0; y < 4; y++)
-                    {
-                        if (grid[x][y] != null)
-                        {
-                            Block b = grid[x][y];
-                            b.moveLeft();
-                        }
-                    }
+                    leftCheck();
                 }
                 
                 //only lets new blocks be created when blocks merge/move
@@ -88,18 +108,10 @@ public class MyWorld extends World {
             if (!rightPressed)
             {
                 rightPressed = true;
-    
-                // deal with rightmost blocks in the grid
-                for (int x = 0; x < 4; x++)
+                
+                for (int i = 0; i < 3; i++)
                 {
-                    for (int y = 0; y < 4; y++)
-                    {
-                        if (grid[x][y] != null)
-                        {
-                            Block b = grid[x][y];
-                            b.moveRight();
-                        }
-                    }
+                    rightCheck();
                 }
                 
                 //only lets new blocks be created when blocks merge/move
@@ -120,15 +132,86 @@ public class MyWorld extends World {
         }
     }
     
+    //check the opposite side in the grid 
+    public void upCheck()
+    {
+        //check every grid spot for a block and check if it can move down
+        for (int y = 3; y >= 0; y--)
+        {
+            for (int x = 0; x < 4; x++)
+            {
+                if (grid[x][y] != null)
+                {
+                    Block b = grid[x][y];
+                    b.moveUp();
+                    Greenfoot.delay(1);
+                }
+            }
+        }
+    }
+    
+    public void downCheck()
+    {
+        //check every grid spot for a block and if it can move down
+        for (int y = 0; y < 4; y++)
+        {
+            for (int x = 0; x < 4; x++)
+            {
+                if (grid[x][y] != null)
+                {
+                    Block b = grid[x][y];
+                    b.moveDown();
+                    Greenfoot.delay(1);
+                }
+            }
+        }
+    }
+    
+    public void leftCheck()
+    {
+        //check every grid spot for a block and check if it can move left
+        for (int x = 3; x >= 0; x--)
+        {
+            for (int y = 0; y < 4; y++)
+            {
+                if (grid[x][y] != null)
+                {
+                    Block b = grid[x][y];
+                    b.moveLeft();
+                    Greenfoot.delay(1);
+                }
+            }
+        }
+    }
+    
+    public void rightCheck()
+    {
+        //check every grid spot for a block and check if it can move right
+        for (int x = 0; x < 4; x++)
+        {
+            for (int y = 0; y < 4; y++)
+            {
+                if (grid[x][y] != null)
+                {
+                    Block b = grid[x][y];
+                    b.moveRight();
+                    Greenfoot.delay(1);
+                }
+            }
+        }
+    }
+    
     public void randPos()
     {
         Block two1 = new Block(2);
         Block two2 = new Block(2);
         
+        //+120 is the position of the next empty square
+        
         //random position for one random spawning two block
         int randX1 = Greenfoot.getRandomNumber(4);
         int randY1 = Greenfoot.getRandomNumber(4);
-        int x1 = 70 + (randX1 * 120);  //+120 it the position of the next empty square
+        int x1 = 70 + (randX1 * 120);
         int y1 = 70 + (randY1 * 120);
         
         //random position for the other random spawning two block
@@ -157,7 +240,40 @@ public class MyWorld extends World {
     public void createNewBlocks()
     {   
         //checking if the board is full
-        int emptySpots = 0;
+        emptyCheck();
+        
+        // Find a random empty spot
+        int randSpot = Greenfoot.getRandomNumber(emptySpots);
+        int count = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                if (grid[i][j] == null)
+                {
+                    //without count it would spawn a new block at the first empty spot found
+                    if (count == randSpot)
+                    {
+                        //randomizes to create a new 2 or 4(5% chance)
+                        int twoOrFour = Greenfoot.getRandomNumber(6);
+                        Block block = (twoOrFour == 1) ? new Block(4) : new Block(2);
+    
+                        int x = 70 + (i * 120);
+                        int y = 70 + (j * 120);
+                        addObject(block, x, y);
+                        grid[i][j] = block; // mark as full
+                        return;
+                    }
+                    count++;
+                }
+            }
+        }
+    }
+    
+    public void emptyCheck()
+    {
+        emptySpots = 0;
+        
         for (int i = 0; i < 4; i++)
         {
             for (int j = 0; j < 4; j++)
@@ -174,32 +290,6 @@ public class MyWorld extends World {
             EndScreen endscreen = new EndScreen();
             Greenfoot.setWorld(endscreen); 
             return;
-        }
-        
-        // Find a random empty spot
-        int randSpot = Greenfoot.getRandomNumber(emptySpots);
-        int count = 0;
-        for (int i = 0; i < 4; i++)
-        {
-            for (int j = 0; j < 4; j++)
-            {
-                if (grid[i][j] == null)
-                {
-                    if (count == randSpot)
-                    {
-                        //randomizes to create a new 2 or 4(5% chance)
-                        int twoOrFour = Greenfoot.getRandomNumber(6);
-                        Block block = (twoOrFour == 1) ? new Block(4) : new Block(2);
-    
-                        int x = 70 + (i * 120);
-                        int y = 70 + (j * 120);
-                        addObject(block, x, y);
-                        grid[i][j] = block; // mark as full
-                        return;
-                    }
-                    count++;
-                }
-            }
         }
     }
 }
