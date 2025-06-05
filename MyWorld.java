@@ -58,7 +58,25 @@ public class MyWorld extends World {
             if (!leftPressed)
             {   
                 leftPressed = true;
-                createNewBlocks();
+                
+                //check ever grid spot for a block and check if it can move left
+                for (int x = 0; x < 4; x++)
+                {
+                    for (int y = 0; y < 4; y++)
+                    {
+                        if (grid[x][y] != null)
+                        {
+                            Block b = grid[x][y];
+                            b.moveLeft();
+                        }
+                    }
+                }
+                
+                //only lets new blocks be created when blocks merge/move
+                if (blockCanSpawn)
+                {
+                    createNewBlocks();
+                }
             }
         } else 
         {
@@ -69,6 +87,8 @@ public class MyWorld extends World {
         {
             if (!rightPressed)
             {
+                rightPressed = true;
+    
                 // deal with rightmost blocks in the grid
                 for (int x = 0; x < 4; x++)
                 {
@@ -78,19 +98,12 @@ public class MyWorld extends World {
                         {
                             Block b = grid[x][y];
                             b.moveRight();
-                            
-                            if (x == 3)
-                            {
-                                blockCanSpawn = false;
-                            }
                         }
                     }
                 }
                 
-                rightPressed = true;
-                
                 //only lets new blocks be created when blocks merge/move
-                if (blockCanSpawn == true)
+                if (blockCanSpawn)
                 {
                     createNewBlocks();
                 }
