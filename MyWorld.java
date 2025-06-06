@@ -5,10 +5,12 @@ import greenfoot.*;
 public class MyWorld extends World {
     //use an int 2d arr to keep track of the grid
     public Block[][] grid = new Block[4][4];
+    
     public boolean win = false;
     public boolean hardMode = false;
     public boolean insaneMode = false;
     
+    //makes sure you can't hold down keys
     private boolean upPressed = false;
     private boolean downPressed = false;
     private boolean leftPressed = false;
@@ -33,7 +35,6 @@ public class MyWorld extends World {
     {   
         if (Greenfoot.isKeyDown("up")) 
         {
-            //makes sure blocks dont just instantly fill up the world
             if (!upPressed)
             {   
                 upPressed = true;
@@ -48,8 +49,14 @@ public class MyWorld extends World {
                 }
                 
                 createNewBlocks();
-
+                
+                //create 2 total new blocks at hard mode and 3 at insane mode
                 if(hardMode == true)
+                {
+                    createNewBlocks();
+                }
+                
+                if(insaneMode == true)
                 {
                     createNewBlocks();
                 }
@@ -76,6 +83,11 @@ public class MyWorld extends World {
                 {
                     createNewBlocks();
                 }
+                
+                if(insaneMode == true)
+                {
+                    createNewBlocks();
+                }
             }
         } else 
         {
@@ -99,6 +111,11 @@ public class MyWorld extends World {
                 {
                     createNewBlocks();
                 }
+                
+                if(insaneMode == true)
+                {
+                    createNewBlocks();
+                }
             }
         } else 
         {
@@ -119,6 +136,11 @@ public class MyWorld extends World {
                 createNewBlocks();
                 
                 if(hardMode == true)
+                {
+                    createNewBlocks();
+                }
+                
+                if(insaneMode == true)
                 {
                     createNewBlocks();
                 }

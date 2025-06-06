@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Block extends Actor
 {    
     private int value;
-
+ 
     public static int score = 0; 
         
     public Block(int value)
@@ -21,13 +21,15 @@ public class Block extends Actor
         {
             world.win = true;
         }
+        
         if(getValue() == 256) 
         {
             world.hardMode = true;
         }
-        if(getValue() = 512
+        
+        if(getValue() == 512)
         {
-            world.InsaneMode = true; 
+            world.insaneMode = true; 
         }
     }
     
@@ -43,28 +45,32 @@ public class Block extends Actor
         int topValue = this.value;
         int bottomValue = block.value;
         
+        //return if the two blocks are a different value 
         if(topValue != bottomValue)
         {
             return;
         }
         
+        //position of the other block 
         int xBlock = block.getX();
         int yBlock = block.getY();
-        
+            
+        //grid position of this block
         int xGrid = (this.getX() - 70) / 120;
         int yGrid = (this.getY() - 70) / 120;
         
-        //remove both blocks form the world and grid
+        //remove both blocks from the world and this block from the grid
         world.grid[xGrid][yGrid] = null;
         world.removeObject(this);
         world.removeObject(block);
         
-        //create the new merged block
+        //create the new merged block at block's (parameter) old position 
         int mergeValue = (topValue!= 2048) ? topValue + bottomValue : topValue;
         Block newBlock = new Block(mergeValue);
         world.addObject(newBlock, xBlock, yBlock);
         world.grid[(xBlock - 70) / 120][(yBlock - 70) / 120] = newBlock;
         
+        //increases score by the value of the merged block
         score += mergeValue;
     }
     
@@ -75,17 +81,20 @@ public class Block extends Actor
         int xGrid = (getX() - 70) / 120;
         int yGrid = (getY() - 70) / 120;
         
+        //returns if this block is at the top row or higher
         if (yGrid <= 0)
         {
             return;
         }
         
+        //the block above this one
         Block upBlock = world.grid[xGrid][yGrid - 1];
         if (upBlock != null)
         {
-            // Check if block exists to the left, if so, merge correctly
+            // Check if a block exists above, if so, merge correctly
             if (upBlock.getValue() == this.getValue())
             {
+                //update the grid position
                 world.grid[xGrid][yGrid] = null;
                 setLocation(getX(), getY() - 120);
                 world.grid[xGrid][yGrid - 1] = this;
@@ -94,6 +103,7 @@ public class Block extends Actor
             }
         } else
         {
+            //update the grid position
             world.grid[xGrid][yGrid] = null; // the old position of the block
             setLocation(getX(), getY() - 120);
             world.grid[xGrid][yGrid - 1] = this;
@@ -107,17 +117,20 @@ public class Block extends Actor
         int xGrid = (getX() - 70) / 120;
         int yGrid = (getY() - 70) / 120;
         
+        //return if this block is at the bottom row or lower
         if (yGrid >= 3)
         {
             return;
         }
         
+        //the block below this one
         Block downBlock = world.grid[xGrid][yGrid + 1];
         if (downBlock != null)
         {
-            // Check if block exists to the left, if so, merge correctly
+            // Check if block exists below, if so, merge correctly
             if (downBlock.getValue() == this.getValue())
             {
+                //update the grid position
                 world.grid[xGrid][yGrid] = null;
                 setLocation(getX(), getY() + 120);
                 world.grid[xGrid][yGrid + 1] = this;
@@ -126,6 +139,7 @@ public class Block extends Actor
             }
         } else
         {
+            //update the grid position
             world.grid[xGrid][yGrid] = null; // the old position of the block
             setLocation(getX(), getY() + 120);
             world.grid[xGrid][yGrid + 1] = this;
@@ -139,17 +153,20 @@ public class Block extends Actor
         int xGrid = (getX() - 70) / 120;
         int yGrid = (getY() - 70) / 120;
         
+        //return if the block is at the leftmost column or further left
         if (xGrid <= 0)
         {
             return;
         }
         
+        //the block on the left of this one
         Block leftBlock = world.grid[xGrid - 1][yGrid];
         if (leftBlock != null)
         {
             // Check if block exists to the left, if so, merge correctly
             if (leftBlock.getValue() == this.getValue())
             {
+                //update the grid position
                 world.grid[xGrid][yGrid] = null;
                 setLocation(getX() - 120, getY());
                 world.grid[xGrid - 1][yGrid] = this;
@@ -158,6 +175,7 @@ public class Block extends Actor
             }
         } else
         {
+            //update the grid position
             world.grid[xGrid][yGrid] = null; // the old position of the block
             setLocation(getX() - 120, getY());
             world.grid[xGrid - 1][yGrid] = this;
@@ -171,17 +189,20 @@ public class Block extends Actor
         int xGrid = (getX() - 70) / 120;
         int yGrid = (getY() - 70) / 120;
         
+        //return if the block is at the rightmost column or further right
         if (xGrid >= 3)
         {
             return;
         }
         
+        //the block on the right of this one
         Block rightBlock = world.grid[xGrid + 1][yGrid];
         if (rightBlock != null)
         {
             // Check if block exists to the right, if so, merge correctly
             if (rightBlock.getValue() == this.getValue())
             {
+                //update the grid position
                 world.grid[xGrid][yGrid] = null;
                 setLocation(getX() + 120, getY());
                 world.grid[xGrid + 1][yGrid] = this;
@@ -190,6 +211,7 @@ public class Block extends Actor
             }
         } else
         {
+            //update the grid position
             world.grid[xGrid][yGrid] = null; // the old position of the block
             setLocation(getX() + 120, getY());
             world.grid[xGrid + 1][yGrid] = this;
