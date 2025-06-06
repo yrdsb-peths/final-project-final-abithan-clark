@@ -12,9 +12,7 @@ public class MyWorld extends World {
     private boolean downPressed = false;
     private boolean leftPressed = false;
     private boolean rightPressed = false;
-    
-    private int emptySpots = 0;
-    
+        
     public MyWorld() {
         super(500, 500, 1);
         
@@ -240,7 +238,25 @@ public class MyWorld extends World {
     public void createNewBlocks()
     {   
         //checking if the board is full
-        emptyCheck();
+        int emptySpots = 0;
+        
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                if (grid[i][j] == null)
+                {
+                    emptySpots++;
+                }
+            }
+        }
+        
+        if (emptySpots == 0)
+        {
+            EndScreen endscreen = new EndScreen();
+            Greenfoot.setWorld(endscreen); 
+            return;
+        }
         
         // Find a random empty spot
         int randSpot = Greenfoot.getRandomNumber(emptySpots);
@@ -267,29 +283,6 @@ public class MyWorld extends World {
                     count++;
                 }
             }
-        }
-    }
-    
-    public void emptyCheck()
-    {
-        emptySpots = 0;
-        
-        for (int i = 0; i < 4; i++)
-        {
-            for (int j = 0; j < 4; j++)
-            {
-                if (grid[i][j] == null)
-                {
-                    emptySpots++;
-                }
-            }
-        }
-        
-        if (emptySpots == 0)
-        {
-            EndScreen endscreen = new EndScreen();
-            Greenfoot.setWorld(endscreen); 
-            return;
         }
     }
 }
