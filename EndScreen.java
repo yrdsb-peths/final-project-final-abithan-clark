@@ -16,6 +16,7 @@ public class EndScreen extends World
         super(600, 400, 1); 
         
         setBackground("images/endscreen.jpg");
+        Greenfoot.setSpeed(60);
         
         addObject(scoreLabel, 300, 225);
         Block.score = 0;//reset score
