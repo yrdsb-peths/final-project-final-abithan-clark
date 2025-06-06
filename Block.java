@@ -21,6 +21,14 @@ public class Block extends Actor
         {
             world.win = true;
         }
+        if(getValue() == 256) 
+        {
+            world.hardMode = true;
+        }
+        if(getValue() = 512
+        {
+            world.InsaneMode = true; 
+        }
     }
     
     public int getValue()

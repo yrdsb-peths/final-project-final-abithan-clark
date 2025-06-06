@@ -6,6 +6,8 @@ public class MyWorld extends World {
     //use an int 2d arr to keep track of the grid
     public Block[][] grid = new Block[4][4];
     public boolean win = false;
+    public boolean hardMode = false;
+    public boolean insaneMode = false;
     
     private boolean upPressed = false;
     private boolean downPressed = false;
@@ -46,6 +48,11 @@ public class MyWorld extends World {
                 }
                 
                 createNewBlocks();
+
+                if(hardMode == true)
+                {
+                    createNewBlocks();
+                }
             }
         } else 
         {
@@ -64,6 +71,11 @@ public class MyWorld extends World {
                 }
                 
                 createNewBlocks();
+
+                if(hardMode == true)
+                {
+                    createNewBlocks();
+                }
             }
         } else 
         {
@@ -82,6 +94,11 @@ public class MyWorld extends World {
                 }
                 
                 createNewBlocks();
+
+                if(hardMode == true)
+                {
+                    createNewBlocks();
+                }
             }
         } else 
         {
@@ -99,8 +116,12 @@ public class MyWorld extends World {
                     rightCheck();
                 }
                 
-                //only lets new blocks be created when blocks merge/move
                 createNewBlocks();
+                
+                if(hardMode == true)
+                {
+                    createNewBlocks();
+                }
             }
         } else
         {
@@ -272,4 +293,6 @@ public class MyWorld extends World {
             }
         }
     }
+    
+    
 }
