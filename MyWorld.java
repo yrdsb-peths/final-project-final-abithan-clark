@@ -7,6 +7,8 @@ public class MyWorld extends World {
     public Block[][] grid = new Block[4][4];
     public boolean blockCanSpawn = true;
     public boolean win = false;
+    public boolean hardMode = false;
+    public boolean insaneMode = false;
     
     private boolean upPressed = false;
     private boolean downPressed = false;
@@ -51,6 +53,10 @@ public class MyWorld extends World {
                 {
                     createNewBlocks();
                 }
+                if(hardMode == true)
+                {
+                    createNewBlocks();
+                }
             }
         } else 
         {
@@ -70,6 +76,10 @@ public class MyWorld extends World {
                 
                 //only lets new blocks be created when blocks merge/move
                 if (blockCanSpawn)
+                {
+                    createNewBlocks();
+                }
+                if(hardMode == true)
                 {
                     createNewBlocks();
                 }
@@ -95,6 +105,10 @@ public class MyWorld extends World {
                 {
                     createNewBlocks();
                 }
+                if(hardMode == true)
+                {
+                    createNewBlocks();
+                }
             }
         } else 
         {
@@ -114,6 +128,11 @@ public class MyWorld extends World {
                 
                 //only lets new blocks be created when blocks merge/move
                 if (blockCanSpawn)
+                {
+                    createNewBlocks();
+                }
+                
+                if(hardMode == true)
                 {
                     createNewBlocks();
                 }
@@ -288,4 +307,6 @@ public class MyWorld extends World {
             }
         }
     }
+    
+    
 }
