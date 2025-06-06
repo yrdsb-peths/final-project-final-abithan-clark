@@ -128,7 +128,7 @@ public class MyWorld extends World {
         //Change controls when reaching a set block number
         //If they don't figure out controls in 5 secs then it auto moves a random control
         //Add multiple blocks spawned (2 or 3) per move which can be an 8 value. 
-        if(Block.value == 2048)
+        if(win == true)
         {
             Label winnerLabel = new Label("You Win", 100);
             addObject(winnerLabel, 250, 250);
