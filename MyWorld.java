@@ -5,7 +5,6 @@ import greenfoot.*;
 public class MyWorld extends World {
     //use an int 2d arr to keep track of the grid
     public Block[][] grid = new Block[4][4];
-    public boolean blockCanSpawn = true;
     public boolean win = false;
     
     private boolean upPressed = false;
@@ -46,11 +45,7 @@ public class MyWorld extends World {
                     upCheck();
                 }
                 
-                //only lets new blocks be created when blocks merge/move
-                if (blockCanSpawn)
-                {
-                    createNewBlocks();
-                }
+                createNewBlocks();
             }
         } else 
         {
@@ -68,11 +63,7 @@ public class MyWorld extends World {
                     downCheck();
                 }
                 
-                //only lets new blocks be created when blocks merge/move
-                if (blockCanSpawn)
-                {
-                    createNewBlocks();
-                }
+                createNewBlocks();
             }
         } else 
         {
@@ -90,11 +81,7 @@ public class MyWorld extends World {
                     leftCheck();
                 }
                 
-                //only lets new blocks be created when blocks merge/move
-                if (blockCanSpawn)
-                {
-                    createNewBlocks();
-                }
+                createNewBlocks();
             }
         } else 
         {
@@ -113,10 +100,7 @@ public class MyWorld extends World {
                 }
                 
                 //only lets new blocks be created when blocks merge/move
-                if (blockCanSpawn)
-                {
-                    createNewBlocks();
-                }
+                createNewBlocks();
             }
         } else
         {

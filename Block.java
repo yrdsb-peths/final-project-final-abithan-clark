@@ -58,8 +58,6 @@ public class Block extends Actor
         world.grid[(xBlock - 70) / 120][(yBlock - 70) / 120] = newBlock;
         
         score += mergeValue;
-        
-        world.blockCanSpawn = true;
     }
     
     public void moveUp()
@@ -85,16 +83,12 @@ public class Block extends Actor
                 world.grid[xGrid][yGrid - 1] = this;
                 
                 merge(upBlock);    
-                
-                world.blockCanSpawn = true;
             }
         } else
         {
             world.grid[xGrid][yGrid] = null; // the old position of the block
             setLocation(getX(), getY() - 120);
             world.grid[xGrid][yGrid - 1] = this;
-            
-            world.blockCanSpawn = true;
         }
     }
     
@@ -121,16 +115,12 @@ public class Block extends Actor
                 world.grid[xGrid][yGrid + 1] = this;
                 
                 merge(downBlock);    
-                
-                world.blockCanSpawn = true;
             }
         } else
         {
             world.grid[xGrid][yGrid] = null; // the old position of the block
             setLocation(getX(), getY() + 120);
             world.grid[xGrid][yGrid + 1] = this;
-            
-            world.blockCanSpawn = true;
         }
     }
     
@@ -156,17 +146,13 @@ public class Block extends Actor
                 setLocation(getX() - 120, getY());
                 world.grid[xGrid - 1][yGrid] = this;
                 
-                merge(leftBlock);    
-                
-                world.blockCanSpawn = true;
+                merge(leftBlock);
             }
         } else
         {
             world.grid[xGrid][yGrid] = null; // the old position of the block
             setLocation(getX() - 120, getY());
             world.grid[xGrid - 1][yGrid] = this;
-            
-            world.blockCanSpawn = true;
         }
     }
     
@@ -192,15 +178,13 @@ public class Block extends Actor
                 setLocation(getX() + 120, getY());
                 world.grid[xGrid + 1][yGrid] = this;
 
-                merge(rightBlock);    
+                merge(rightBlock);
             }
         } else
         {
             world.grid[xGrid][yGrid] = null; // the old position of the block
             setLocation(getX() + 120, getY());
             world.grid[xGrid + 1][yGrid] = this;
-            
-            world.blockCanSpawn = true;
         }
     }
 }
