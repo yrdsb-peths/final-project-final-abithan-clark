@@ -2,6 +2,13 @@
 
 import greenfoot.*;
 
+/**
+ * the game world where you play the game
+ * 
+ * @author Abithan Paskaranathan and Clark Chen 
+ * @version June 7, 2025
+ */
+
 public class MyWorld extends World {
     //use an int 2d arr to keep track of the grid
     public Block[][] grid = new Block[4][4];
@@ -15,7 +22,12 @@ public class MyWorld extends World {
     private boolean downPressed = false;
     private boolean leftPressed = false;
     private boolean rightPressed = false;
-        
+
+    //adds a message showing the controls
+    Label controls = new Label("  Use\n  \u2191\n  \u2190 \u2193 \u2192\n  to move", 50);
+    TextBg controlBg = new TextBg(190, 210);
+    X controlX = new X();
+    
     public MyWorld() {
         super(500, 500, 1);
         
@@ -28,11 +40,17 @@ public class MyWorld extends World {
         
         //creates two random positioned 2 blocks
         randPos();
+        
+        addObject(controlBg, 252, 247);//the grey background
+        addObject(controls, 242, 250); //the label
+        addObject(controlX, 332, 157); //the x object that removes the two above if pressed
     }
     
     //code is in act so it keeps checking for keypresses
     public void act()
-    {   
+    {  
+        //mouseCord();
+        
         if (Greenfoot.isKeyDown("up")) 
         {
             if (!upPressed)
@@ -51,14 +69,31 @@ public class MyWorld extends World {
                 createNewBlocks();
                 
                 //create 2 total new blocks at hard mode and 3 at insane mode
+                
                 if(hardMode == true)
                 {
                     createNewBlocks();
+                    
+                    Label hard = new Label("Two blocks now \n spawn with\n each movement", 40);
+                    TextBg hardBg = new TextBg(270, 160);
+                    X hardX = new X();
+                    
+                    addObject(hardBg, 238, 250);
+                    addObject(hard, 242, 250);
+                    addObject(hardX, 358, 185);
                 }
-                
+
                 if(insaneMode == true)
                 {
                     createNewBlocks();
+                    
+                    Label insane = new Label("Three blocks now \n spawn with\n each movement", 40);
+                    TextBg insaneBg = new TextBg(270, 160);
+                    X insaneX = new X();
+                    
+                    addObject(insaneBg, 238, 250);
+                    addObject(insane, 242, 250);
+                    addObject(insaneX, 358, 185);
                 }
             }
         } else 
@@ -82,11 +117,27 @@ public class MyWorld extends World {
                 if(hardMode == true)
                 {
                     createNewBlocks();
+                    
+                    Label hard = new Label("Two blocks now \n spawn with\n each movement", 40);
+                    TextBg hardBg = new TextBg(270, 160);
+                    X hardX = new X();
+                    
+                    addObject(hardBg, 238, 250);
+                    addObject(hard, 242, 250);
+                    addObject(hardX, 358, 185);
                 }
-                
+
                 if(insaneMode == true)
                 {
                     createNewBlocks();
+                    
+                    Label insane = new Label("Three blocks now \n spawn with\n each movement", 40);
+                    TextBg insaneBg = new TextBg(270, 160);
+                    X insaneX = new X();
+                    
+                    addObject(insaneBg, 238, 250);
+                    addObject(insane, 242, 250);
+                    addObject(insaneX, 358, 185);
                 }
             }
         } else 
@@ -110,11 +161,27 @@ public class MyWorld extends World {
                 if(hardMode == true)
                 {
                     createNewBlocks();
+                    
+                    Label hard = new Label("Two blocks now \n spawn with\n each movement", 40);
+                    TextBg hardBg = new TextBg(270, 160);
+                    X hardX = new X();
+                    
+                    addObject(hardBg, 238, 250);
+                    addObject(hard, 242, 250);
+                    addObject(hardX, 358, 185);
                 }
-                
+
                 if(insaneMode == true)
                 {
                     createNewBlocks();
+                    
+                    Label insane = new Label("Three blocks now \n spawn with\n each movement", 40);
+                    TextBg insaneBg = new TextBg(270, 160);
+                    X insaneX = new X();
+                    
+                    addObject(insaneBg, 238, 250);
+                    addObject(insane, 242, 250);
+                    addObject(insaneX, 358, 185);
                 }
             }
         } else 
@@ -138,11 +205,27 @@ public class MyWorld extends World {
                 if(hardMode == true)
                 {
                     createNewBlocks();
+                    
+                    Label hard = new Label("Two blocks now \n spawn with\n each movement", 40);
+                    TextBg hardBg = new TextBg(270, 160);
+                    X hardX = new X();
+                    
+                    addObject(hardBg, 238, 250);
+                    addObject(hard, 242, 250);
+                    addObject(hardX, 358, 185);
                 }
-                
+
                 if(insaneMode == true)
                 {
                     createNewBlocks();
+                    
+                    Label insane = new Label("Three blocks now \n spawn with\n each movement", 40);
+                    TextBg insaneBg = new TextBg(270, 160);
+                    X insaneX = new X();
+                    
+                    addObject(insaneBg, 238, 250);
+                    addObject(insane, 242, 250);
+                    addObject(insaneX, 358, 185);
                 }
             }
         } else
@@ -158,6 +241,26 @@ public class MyWorld extends World {
             Label winnerLabel = new Label("You Win", 100);
             addObject(winnerLabel, 250, 250);
         }
+    }
+    
+    public void mouseCord()
+    {
+        MouseInfo m = Greenfoot.getMouseInfo();
+        
+        int x = 0;
+        int y = 0;
+        
+        if (m != null)
+        {
+            x = m.getX();
+            y = m.getY();
+        }
+        
+        Label l = new Label(x + ", " + y, 22);
+        addObject(l, 60, 6);
+        
+        Greenfoot.delay(16);
+        removeObject(l);
     }
     
     //check the opposite side in the grid 

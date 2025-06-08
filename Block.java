@@ -1,5 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
+/**
+ * the individual blocks
+ * 
+ * @author Abithan Paskaranathan and Clark Chen 
+ * @version June 7, 2025
+ */
+
 public class Block extends Actor
 {    
     private int value;
