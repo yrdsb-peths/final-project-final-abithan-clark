@@ -49,7 +49,6 @@ public class MyWorld extends World {
     //code is in act so it keeps checking for keypresses
     public void act()
     {  
-        //mouseCord();
         
         if (Greenfoot.isKeyDown("up")) 
         {
@@ -241,26 +240,6 @@ public class MyWorld extends World {
             Label winnerLabel = new Label("You Win", 100);
             addObject(winnerLabel, 250, 250);
         }
-    }
-    
-    public void mouseCord()
-    {
-        MouseInfo m = Greenfoot.getMouseInfo();
-        
-        int x = 0;
-        int y = 0;
-        
-        if (m != null)
-        {
-            x = m.getX();
-            y = m.getY();
-        }
-        
-        Label l = new Label(x + ", " + y, 22);
-        addObject(l, 60, 6);
-        
-        Greenfoot.delay(16);
-        removeObject(l);
     }
     
     //check the opposite side in the grid 
