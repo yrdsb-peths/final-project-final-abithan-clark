@@ -16,6 +16,8 @@ public class MyWorld extends World {
     public boolean win = false;
     public boolean hardMode = false;
     public boolean insaneMode = false;
+    public boolean removeHardLabel = false;
+    public boolean removeInsaneLabel = false;
     
     //makes sure you can't hold down keys
     private boolean upPressed = false;
@@ -73,26 +75,39 @@ public class MyWorld extends World {
                 {
                     createNewBlocks();
                     
-                    Label hard = new Label("Two blocks now \n spawn with\n each movement", 40);
-                    TextBg hardBg = new TextBg(270, 160);
-                    X hardX = new X();
+                    //makes sure the labels dont continuously pop up as it keeps detecting 
+                    //the certain block to activate hard/insane mode
                     
-                    addObject(hardBg, 238, 250);
-                    addObject(hard, 242, 250);
-                    addObject(hardX, 358, 185);
+                    if (!removeHardLabel)
+                    {
+                        Label hard = new Label("Two blocks now \n spawn with\n each movement", 40);
+                        TextBg hardBg = new TextBg(270, 160);
+                        X hardX = new X();
+                    
+                        addObject(hardBg, 238, 250);
+                        addObject(hard, 242, 250);
+                        addObject(hardX, 358, 185);
+                        
+                        removeHardLabel = true;
+                    }
                 }
 
                 if(insaneMode == true)
                 {
                     createNewBlocks();
                     
-                    Label insane = new Label("Three blocks now \n spawn with\n each movement", 40);
-                    TextBg insaneBg = new TextBg(270, 160);
-                    X insaneX = new X();
+                    if (!removeInsaneLabel)
+                    {
+                        Label insane = new Label("Three blocks now \n spawn with\n each movement", 40);
+                        TextBg insaneBg = new TextBg(270, 160);
+                        X insaneX = new X();
+                        
+                        addObject(insaneBg, 238, 250);
+                        addObject(insane, 242, 250);
+                        addObject(insaneX, 358, 185);
                     
-                    addObject(insaneBg, 238, 250);
-                    addObject(insane, 242, 250);
-                    addObject(insaneX, 358, 185);
+                        removeInsaneLabel = true;
+                    }
                 }
             }
         } else 
@@ -117,26 +132,36 @@ public class MyWorld extends World {
                 {
                     createNewBlocks();
                     
-                    Label hard = new Label("Two blocks now \n spawn with\n each movement", 40);
-                    TextBg hardBg = new TextBg(270, 160);
-                    X hardX = new X();
+                    if (!removeHardLabel)
+                    {
+                        Label hard = new Label("Two blocks now \n spawn with\n each movement", 40);
+                        TextBg hardBg = new TextBg(270, 160);
+                        X hardX = new X();
                     
-                    addObject(hardBg, 238, 250);
-                    addObject(hard, 242, 250);
-                    addObject(hardX, 358, 185);
+                        addObject(hardBg, 238, 250);
+                        addObject(hard, 242, 250);
+                        addObject(hardX, 358, 185);
+                        
+                        removeHardLabel = true;
+                    }
                 }
 
                 if(insaneMode == true)
                 {
                     createNewBlocks();
                     
-                    Label insane = new Label("Three blocks now \n spawn with\n each movement", 40);
-                    TextBg insaneBg = new TextBg(270, 160);
-                    X insaneX = new X();
+                    if (!removeInsaneLabel)
+                    {
+                        Label insane = new Label("Three blocks now \n spawn with\n each movement", 40);
+                        TextBg insaneBg = new TextBg(270, 160);
+                        X insaneX = new X();
+                        
+                        addObject(insaneBg, 238, 250);
+                        addObject(insane, 242, 250);
+                        addObject(insaneX, 358, 185);
                     
-                    addObject(insaneBg, 238, 250);
-                    addObject(insane, 242, 250);
-                    addObject(insaneX, 358, 185);
+                        removeInsaneLabel = true;
+                    }
                 }
             }
         } else 
@@ -161,26 +186,36 @@ public class MyWorld extends World {
                 {
                     createNewBlocks();
                     
-                    Label hard = new Label("Two blocks now \n spawn with\n each movement", 40);
-                    TextBg hardBg = new TextBg(270, 160);
-                    X hardX = new X();
+                    if (!removeHardLabel)
+                    {
+                        Label hard = new Label("Two blocks now \n spawn with\n each movement", 40);
+                        TextBg hardBg = new TextBg(270, 160);
+                        X hardX = new X();
                     
-                    addObject(hardBg, 238, 250);
-                    addObject(hard, 242, 250);
-                    addObject(hardX, 358, 185);
+                        addObject(hardBg, 238, 250);
+                        addObject(hard, 242, 250);
+                        addObject(hardX, 358, 185);
+                        
+                        removeHardLabel = true;
+                    }
                 }
 
                 if(insaneMode == true)
                 {
                     createNewBlocks();
                     
-                    Label insane = new Label("Three blocks now \n spawn with\n each movement", 40);
-                    TextBg insaneBg = new TextBg(270, 160);
-                    X insaneX = new X();
+                    if (!removeInsaneLabel)
+                    {
+                        Label insane = new Label("Three blocks now \n spawn with\n each movement", 40);
+                        TextBg insaneBg = new TextBg(270, 160);
+                        X insaneX = new X();
+                        
+                        addObject(insaneBg, 238, 250);
+                        addObject(insane, 242, 250);
+                        addObject(insaneX, 358, 185);
                     
-                    addObject(insaneBg, 238, 250);
-                    addObject(insane, 242, 250);
-                    addObject(insaneX, 358, 185);
+                        removeInsaneLabel = true;
+                    }
                 }
             }
         } else 
@@ -205,26 +240,36 @@ public class MyWorld extends World {
                 {
                     createNewBlocks();
                     
-                    Label hard = new Label("Two blocks now \n spawn with\n each movement", 40);
-                    TextBg hardBg = new TextBg(270, 160);
-                    X hardX = new X();
+                    if (!removeHardLabel)
+                    {
+                        Label hard = new Label("Two blocks now \n spawn with\n each movement", 40);
+                        TextBg hardBg = new TextBg(270, 160);
+                        X hardX = new X();
                     
-                    addObject(hardBg, 238, 250);
-                    addObject(hard, 242, 250);
-                    addObject(hardX, 358, 185);
+                        addObject(hardBg, 238, 250);
+                        addObject(hard, 242, 250);
+                        addObject(hardX, 358, 185);
+                        
+                        removeHardLabel = true;
+                    }
                 }
 
                 if(insaneMode == true)
                 {
                     createNewBlocks();
                     
-                    Label insane = new Label("Three blocks now \n spawn with\n each movement", 40);
-                    TextBg insaneBg = new TextBg(270, 160);
-                    X insaneX = new X();
+                    if (!removeInsaneLabel)
+                    {
+                        Label insane = new Label("Three blocks now \n spawn with\n each movement", 40);
+                        TextBg insaneBg = new TextBg(270, 160);
+                        X insaneX = new X();
+                        
+                        addObject(insaneBg, 238, 250);
+                        addObject(insane, 242, 250);
+                        addObject(insaneX, 358, 185);
                     
-                    addObject(insaneBg, 238, 250);
-                    addObject(insane, 242, 250);
-                    addObject(insaneX, 358, 185);
+                        removeInsaneLabel = true;
+                    }
                 }
             }
         } else

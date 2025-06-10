@@ -22,6 +22,7 @@ public class TitleScreen extends World
         //add a TextBg,label and x when infoLabel is clicked
         addObject(infoLabel, 405, 180);
     }
+    
     public void act()
     {
         if(Greenfoot.mouseClicked(startLabel))
