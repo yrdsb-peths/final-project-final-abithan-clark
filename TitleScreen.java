@@ -14,7 +14,7 @@ public class TitleScreen extends World
     public TitleScreen()
     {      
         super(540, 318, 1); 
-        setBackground("images/TitleScreen.jpg");
+        setBackground("images/titlescreen.jpg");
         Greenfoot.setSpeed(60);
         
         addObject(startLabel, 405, 250);
