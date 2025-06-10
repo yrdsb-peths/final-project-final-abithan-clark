@@ -11,8 +11,11 @@ public class Block extends Actor
 {    
     private int value;
  
-    public static int score = 0; 
-        
+    public static int score = 0;
+    /**
+     * Constructor - gets run when an object is created. 
+     */
+    
     public Block(int value)
     {
         this.value = value;
@@ -79,6 +82,10 @@ public class Block extends Actor
         
         //increases score by the value of the merged block
         score += mergeValue;
+        
+        //add the animated boom object 
+        Boom boom = new Boom();
+        world.addObject(boom, xBlock, yBlock);
     }
     
     public void moveUp()
