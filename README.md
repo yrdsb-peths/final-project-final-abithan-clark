@@ -1,12 +1,10 @@
 # Final Project: 2048 - Abithan and Clark
 Our game is 2048, which is about sliding numbered blocks in a 4x4 grid. When two blocks of the same value 
 move to the same spot, they merge, combining both values into a single block. Blocks can be moved using the 
-arrow keys, and as a result, all blocks will move in that direction, and a 2 or 4-block will spawn.
-The goal is to create a block with a value of 2048. To play, click on "New Game," which will show the playing grid.
-If a block value of 256 is created, hard mode will start, and now 2 blocks will be created when the arrow keys
-are pressed. If a block value of 512 is created, 3 new blocks will now spawn with each movement. The game ends when 
-the grid is filled up with blocks and you are unable to merge/move any blocks. A score is shown at the end, along 
-with a try again option.
+arrow keys, and as a result, all blocks will move in that direction, and a 2 or 4-block will spawn. The goal
+is to create a block with a value of 2048. To play, click on "New Game," which will show the playing grid.
+The game ends when the grid is filled up with blocks and you are unable to merge/move any blocks. A score is
+shown at the end, along with a try again option.
 
 <br>
 
