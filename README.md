@@ -5,7 +5,10 @@ arrow keys, and as a result, all blocks will move in that direction, and a 2 or 
 The goal is to create a block with a value of 2048. To play, click on "New Game," which will show the playing grid.
 If a block value of 256 is created, hard mode will start, and now 2 blocks will be created when the arrow keys
 are pressed. If a block value of 512 is created, 3 new blocks will now spawn with each movement. The game ends when 
-the grid is filled up with blocks and you are unable to merge/move any blocks. A score 
+the grid is filled up with blocks and you are unable to merge/move any blocks. A score is shown at the end, along 
+with a try again option.
+
+<br>
 
 # Set up Greenfoot for VSCode
 
