@@ -33,7 +33,14 @@ public class TitleScreen extends World
         if(Greenfoot.mouseClicked(infoLabel))
         {
             TextBg infoBg = new TextBg(480, 250);
-            Label info = new Label(" ", 50);//how to play,hard & insane mode and maybe controls
+            
+            /*
+             * If a block value of 256 is created, hard mode will start, and now 2 blocks will be
+             * created when the arrow keys are pressed. If a block value of 512 is created, 3 new
+             * blocks will now spawn with each movement. 
+            */
+           
+            Label info = new Label("", 50);
             X infoX = new X();
             
             addObject(infoBg, 268, 160);
