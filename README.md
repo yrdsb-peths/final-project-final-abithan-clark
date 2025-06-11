@@ -4,7 +4,8 @@ move to the same spot, they merge, combining both values into a single block. Bl
 arrow keys, and as a result, all blocks will move in that direction, and a 2 or 4-block will spawn. The goal
 is to create a block with a value of 2048. To play, click on "New Game," which will show the playing grid.
 The game ends when the grid is filled up with blocks and you are unable to merge/move any blocks. A score is
-shown at the end, along with a try again option.
+shown at the end, along with a try again option. When a 256 block is created, hard mode will activate and 
+2 blocks will spawn with each movement. When a 512 block is created, insane mode will activate, and 3 blocks will spawn
 
 <br>
 
