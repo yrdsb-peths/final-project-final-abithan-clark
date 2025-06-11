@@ -13,6 +13,9 @@ public class Boom extends Actor
     
     SimpleTimer animationTimer = new SimpleTimer();
     
+    /**
+     * Constructor - runs when an object is created
+     */
     public Boom()
     {
         for (int i = 0; i < boom.length; i++)
@@ -20,6 +23,7 @@ public class Boom extends Actor
             boom[i] = new GreenfootImage("images/mergeBoom/boom" + i + ".png");
         }
         
+        //start the timer
         animationTimer.mark();
         
         setImage(boom[0]);
@@ -28,7 +32,6 @@ public class Boom extends Actor
     /**
      * Animate the boom
      */
-    
     int imageIndex = 0;
     public void animateBoom()
     {
@@ -37,12 +40,13 @@ public class Boom extends Actor
             return;
         }
         
+        //restart the timer
         animationTimer.mark();
-        
+
         setImage(boom[imageIndex]);
-        
         imageIndex += 1;
         
+        //remove the boom after 1 cycle of animation
         if (imageIndex == 4)
         {
             getWorld().removeObject(this);

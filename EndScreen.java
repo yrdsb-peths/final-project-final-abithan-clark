@@ -11,22 +11,30 @@ public class EndScreen extends World
     Label endLabel = new Label("You lose", 100);
     Label restart = new Label("try again", 50);
     Label scoreLabel = new Label("score: " + Block.score, 60);
+    
+    /**
+     * Constructor - runs when all spots are filled by blocks
+     */
     public EndScreen()
     {    
         super(600, 400, 1); 
         
         setBackground("images/endscreen.jpg");
+        
+        //Makes sure the button doesn't delay
         Greenfoot.setSpeed(60);
         
-        addObject(scoreLabel, 300, 225);
-        Block.score = 0;//reset score
+        addObject(endLabel, 300, 100);   // shows that  you lost
+        addObject(restart, 300, 325);    //shows the option to restart
+        addObject(scoreLabel, 300, 225); //shows score
         
-        addObject(endLabel, 300, 100);
-        addObject(restart, 300, 325);
+        //reset score
+        Block.score = 0;
     }
     
     public void act()
     {
+        //sets the current world back to MyWorld
         if(Greenfoot.mouseClicked(restart))
         {
             MyWorld gameWorld = new MyWorld();

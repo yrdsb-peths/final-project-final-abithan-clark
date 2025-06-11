@@ -30,6 +30,9 @@ public class MyWorld extends World {
     TextBg controlBg = new TextBg(190, 210);
     X controlX = new X();
     
+    /**
+     * Constructor - runs when a new MyWorld is created by TitleScreen or EndScreen
+     */
     public MyWorld() {
         super(500, 500, 1);
         
@@ -43,15 +46,14 @@ public class MyWorld extends World {
         //creates two random positioned 2 blocks
         randPos();
         
-        addObject(controlBg, 252, 247);//the grey background
-        addObject(controls, 242, 250); //the label
-        addObject(controlX, 332, 157); //the x object that removes the two above if pressed
+        addObject(controlBg, 252, 247);//A grey background
+        addObject(controls, 242, 250); //A label
+        addObject(controlX, 332, 157); //An X object that removes the two above if pressed
     }
     
     //code is in act so it keeps checking for keypresses
     public void act()
     {  
-        
         if (Greenfoot.isKeyDown("up")) 
         {
             if (!upPressed)
@@ -276,10 +278,7 @@ public class MyWorld extends World {
         {
             rightPressed = false;
         }
-        //HARD DIFFICULTY ()
-        //Change controls when reaching a set block number
-        //If they don't figure out controls in 5 secs then it auto moves a random control
-        //Add multiple blocks spawned (2 or 3) per move which can be an 8 value. 
+        
         if(win == true)
         {
             Label winnerLabel = new Label("You Win", 100);
@@ -287,7 +286,9 @@ public class MyWorld extends World {
         }
     }
     
-    //check the opposite side in the grid 
+    /**
+     * Next four - checks the opposite side to the current side so blocks properly move
+     */ 
     public void upCheck()
     {
         //check every grid spot for a block and check if it can move down
@@ -356,12 +357,17 @@ public class MyWorld extends World {
         }
     }
     
+    
+    /**
+     * Creates two randomly positioned blocks, each having a value of 2 or 4
+     */
     public void randPos()
     {
+        //Increasing by 120 is the position of the next empty square
+        //70 is the starting cordinate so blocks don't spawn at 0, 0
+        
         Block two1 = new Block(2);
         Block two2 = new Block(2);
-        
-        //+120 is the position of the next empty square
         
         //random position for one random spawning two block
         int randX1 = Greenfoot.getRandomNumber(4);
@@ -375,7 +381,7 @@ public class MyWorld extends World {
         int x2 = 70 + (randX2 * 120);
         int y2 = 70 + (randY2 * 120);
         
-        //prevents the two blocks from spawing on eachother
+        //prevents the two blocks from spawing on eachother by creating an unused position
         while (randX1 == randX2 && randY1 == randY2)
         {
             randX2 = Greenfoot.getRandomNumber(4);
@@ -387,16 +393,21 @@ public class MyWorld extends World {
         addObject(two1, x1, y1);
         addObject(two2, x2, y2);
         
-        //1 means the block is occupied and 0 means its not
+        //update the grid
         grid[randX1][randY1] = two1;
         grid[randX2][randY2] = two2;
     } 
     
+    
+    /**
+     * Creates a randomly positioned 2 block
+     */
     public void createNewBlocks()
     {   
         //checking if the board is full
         int emptySpots = 0;
         
+        //loop through every spot
         for (int i = 0; i < 4; i++)
         {
             for (int j = 0; j < 4; j++)
@@ -408,6 +419,7 @@ public class MyWorld extends World {
             }
         }
         
+        //show endscreen when no spots are available
         if (emptySpots == 0)
         {
             EndScreen endscreen = new EndScreen();
