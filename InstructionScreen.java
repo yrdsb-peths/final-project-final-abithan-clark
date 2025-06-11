@@ -24,7 +24,12 @@ public class InstructionScreen extends World
     public InstructionScreen()
     {    
         super(600, 400, 1); 
-
+        
+        
+        GreenfootImage info = new GreenfootImage("images/instructionScreen.jpg");
+        info.scale(500, 501);
+        setBackground(info);
+        
         addObject(infoLabelOne, 300, 50);
         addObject(infoLabelTwo, 300, 80);
         addObject(infoLabelThree, 300, 110);
