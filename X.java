@@ -8,6 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class X extends Actor
 {
+    /**
+     * Constructor - runs when an object is created
+     */
     public X()
     {
         GreenfootImage x = new GreenfootImage("images/X.png");
@@ -17,11 +20,13 @@ public class X extends Actor
     
     public void act()
     {
-        //removes the entire message (Grey background and label)
-        //when an X instance is pressed
+        //Removes the entire message (Grey background and label) when 
+        //an X instance is clicked
         
         MyWorld world = (MyWorld) getWorld();
         
+        //Since the order of objects added is Bg, label and X, it removes
+        //the Label class it touches and then the same for Bg, then itself.
         if (Greenfoot.mouseClicked(this) && isTouching(Label.class))
         {
             removeTouching(Label.class);
