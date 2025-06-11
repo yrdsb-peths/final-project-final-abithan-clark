@@ -56,6 +56,7 @@ public class MyWorld extends World {
     //code is in act so it keeps checking for keypresses
     public void act()
     {  
+        backgroundSound.setVolume(20);
         backgroundSound.playLoop();
         
         if (Greenfoot.isKeyDown("up")) 
