@@ -28,6 +28,8 @@ public class MyWorld extends World {
     TextBg controlBg = new TextBg(190, 210);
     X controlX = new X();
     
+    GreenfootSound backgroundSound = new GreenfootSound ("sounds/2048Sounds.mp3");
+    
     public MyWorld() {
         super(500, 500, 1);
         
@@ -49,7 +51,7 @@ public class MyWorld extends World {
     //code is in act so it keeps checking for keypresses
     public void act()
     {  
-        
+        backgroundSound.playLoop();
         if (Greenfoot.isKeyDown("up")) 
         {
             if (!upPressed)
